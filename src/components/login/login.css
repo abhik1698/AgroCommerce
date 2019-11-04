@@ -1,0 +1,12 @@
+.login-form{
+   max-width: 300px;
+   padding: 5px;
+}
+#reg-form{
+   max-width: 700px;
+   padding: 5px;
+}
+
+.header{
+  color: white;
+}
