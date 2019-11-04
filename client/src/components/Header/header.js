@@ -1,7 +1,8 @@
 
-import React, { Component } from 'react'
-import { Menu, Segment, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Menu, Segment, Icon, Image} from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
+
 export default class MenuExampleSecondaryPointing extends Component {
   state = { activeItem: 'home' }
 
@@ -11,11 +12,16 @@ export default class MenuExampleSecondaryPointing extends Component {
     const { activeItem } = this.state
 
     return (
-      <div>
-        <Segment inverted>
+      <center>        
+        <Segment inverted> 
+            <h1 style={{color: 'white', display: 'inline'}}>Para&nbsp;</h1>
+            <Image style={{display: 'inline'}} src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' size='small' />
+            <h1 style={{color: 'white', display: 'inline'}}>&nbsp;Commerce</h1>
         <Menu inverted pointing secondary>
 
-            <Menu.Item as={Link}
+            <Menu.Item
+              position='right'
+              as={Link}
               name='home'
               to='/'
               active={activeItem==='home'}
@@ -24,6 +30,7 @@ export default class MenuExampleSecondaryPointing extends Component {
             </Menu.Item>
 
             <Menu.Item as={Link}
+              position='right'
               name='blogs'
               to='/blogs'
               active={activeItem==='blogs'}
@@ -33,6 +40,7 @@ export default class MenuExampleSecondaryPointing extends Component {
             </Menu.Item>
 
           <Menu.Item as={Link}
+              position='right'
               name='login'
               to='/login'
               active={activeItem==='login'}
@@ -45,15 +53,14 @@ export default class MenuExampleSecondaryPointing extends Component {
               name='logout'
               active={activeItem === 'logout'}
               onClick={this.handleItemClick}
-            >
+              ><Icon name='log out' />
+                Logout
             </Menu.Item>
 
           </Menu.Menu>
-        </Menu>
-          {/* <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' /> */}
-          <h1 style={{color: 'white'}}>(Para, Commerce)</h1>
+          </Menu>          
         </Segment>
-      </div>
+      </center>
     )
   }
 }
