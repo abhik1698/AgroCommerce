@@ -1,7 +1,7 @@
 {
   "name": "ecombe",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "client",
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
