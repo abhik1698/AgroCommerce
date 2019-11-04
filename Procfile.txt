@@ -1,0 +1,1 @@
+dev: concurrently \"yarn run server\" \"yarn run client\"
