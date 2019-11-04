@@ -1,21 +1,41 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { Card, Container, Divider } from 'semantic-ui-react'
+import { Redirect } from 'react-router-dom';
 
 class Blogs extends React.Component {
- 
+
+    state = {
+        redirect: false
+    }
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to = '/?id=1' / >
+        }
+    }
+
     render() {
         return (
-            <BrowserRouter>
-            <div className="BlogIndex">              
-                <Switch>
-                    <h1>Hi</h1>
-                <Route path='/' exact component={Blogs} />
-                <Route path='/blogs' exact component={Blogs} />                
-                </Switch>
-            </div>
-          </BrowserRouter>              
-      );
-  }
+            <div>
+                <Divider />
+            <Container fluid >
+                {this.renderRedirect()}            
+                <Card
+                    onClick = {this.setRedirect}
+                    header='<Agriculture.h>'
+                    meta='Blog'
+                    description='Modernizing Agricultural Business to a Great Standard is a Great Deal'
+                />
+                </Container>   
+                </div>
+        );                
+    }
 }
-
+        
 export default Blogs;

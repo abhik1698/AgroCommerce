@@ -1,27 +1,59 @@
-import React, {Component} from 'react';
-import { Layout, Menu, Icon} from 'antd';
+
+import React, { Component } from 'react'
+import { Menu, Segment, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import './header.css';
+export default class MenuExampleSecondaryPointing extends Component {
+  state = { activeItem: 'home' }
 
-export default class Header extends Component {
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  render(){
+  render() {
+    const { activeItem } = this.state
+
     return (
-      <div className="header">
-        <Layout className="layout">
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={['2']}
-            style={{ lineHeight: '64px' }}
-          >
-            <Menu.Item key="1" className="brand"><Link to='/'><h3>ParaCommerce</h3></Link></Menu.Item>
-            <Menu.Item key="2" ><Link to='/'><Icon type="home" />Home</Link></Menu.Item>
-            <Menu.Item key="3" ><Link to='/Blogs'><Icon type="info-circle" />Blogs</Link></Menu.Item>
-            <Menu.Item key="3" ><Link to='/login'><Icon type="login" />Login</Link></Menu.Item>
-          </Menu>
-        </Layout>
+      <div>
+        <Segment inverted>
+        <Menu inverted pointing secondary>
+
+            <Menu.Item as={Link}
+              name='home'
+              to='/'
+              active={activeItem==='home'}
+              onClick={this.handleItemClick}
+            ><Icon name='home' />Home
+            </Menu.Item>
+
+            <Menu.Item as={Link}
+              name='blogs'
+              to='/blogs'
+              active={activeItem==='blogs'}
+              onClick={this.handleItemClick}
+            ><Icon loading name='certificate' />
+              Blogs
+            </Menu.Item>
+
+          <Menu.Item as={Link}
+              name='login'
+              to='/login'
+              active={activeItem==='login'}
+              onClick={this.handleItemClick}
+            ><Icon name='user' />Login
+            </Menu.Item>
+
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='logout'
+              active={activeItem === 'logout'}
+              onClick={this.handleItemClick}
+            >
+            </Menu.Item>
+
+          </Menu.Menu>
+        </Menu>
+          {/* <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' /> */}
+          <h1 style={{color: 'white'}}>(Para, Commerce)</h1>
+        </Segment>
       </div>
-    );
+    )
   }
 }

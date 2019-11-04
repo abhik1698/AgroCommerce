@@ -17,7 +17,6 @@
     "ignore": [
       "*.test.ts"
     ],
-    
     "execMap": {
       "ts": "ts-node"
     }
@@ -29,7 +28,9 @@
     "chalk": "^2.4.2",
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
+    "errorhandler": "^1.5.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "mongoose": "^5.7.0",
     "multer": "^1.4.2",
     "nodemailer": "^6.3.0",
