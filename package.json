@@ -1,10 +1,10 @@
 {
   "name": "ecombe",
   "version": "1.0.0",
-  "main": "client",
+  "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
+    "start": "yarn --cwd client start",
     "server": "nodemon server.js",
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
