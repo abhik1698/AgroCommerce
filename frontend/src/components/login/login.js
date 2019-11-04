@@ -2,13 +2,40 @@ import React from 'react';
 import './login.css';
 import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
 import WrappedRegistrationForm from './register.js';
+import { Redirect } from 'react-router-dom';
 
 class NormalLoginForm extends React.Component {
-  handleSubmit = e => {
+  
+  state={
+    login: false,
+    redirect: false,
+    tryAgain: false
+  }
+  
+  setRedirect=() => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect=() => {
+    if (this.state.redirect) {
+      return <Redirect to='/Blogs' />    
+    }
+}
+  
+  handleSubmit=e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        if (values.username === "root" && values.password === "root") {
+          console.log("Successs"); 
+          this.props.setState({login: true});
+          console.log(this.state.login); 
+        } else {
+          console.log( "Failed" );
+        }
       }
     });
   };
@@ -18,7 +45,7 @@ class NormalLoginForm extends React.Component {
     return (
       <div>
         <center>
-          <h1>(Para, meter)</h1>
+          <h1>(Para, Commerce)</h1>
           <Row>
             {/* Register form */}
             <Col span={12}>
@@ -61,13 +88,16 @@ class NormalLoginForm extends React.Component {
                   <Form.Item>
                     {getFieldDecorator("remember", {
                       valuePropName: "checked",
-                      initialValue: true
+                      initialValue: true,
+                      message: "Invalid Credentials"
                     })(<Checkbox>Remember me</Checkbox>)}
+                    {this.renderRedirect()}
                     <Button
                       type="primary"
                       htmlType="submit"
                       className="login-form-button"
-                      onClick={()=> this.props.auth.login()}
+                      onClick={this.setRedirect}
+                      // onClick={()=> this.props.auth.login()}
                     >
                       Log in
                     </Button>
