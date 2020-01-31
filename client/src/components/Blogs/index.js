@@ -24,16 +24,34 @@ class Blogs extends React.Component {
         return (
             <div>
                 <Divider />
-            <Container fluid >
+            <Container  >
                 {this.renderRedirect()}            
                 <Card
                     onClick = {this.setRedirect}
                     header='<Agriculture.h>'
                     meta='Blog'
                     description='Modernizing Agricultural Business to a Great Standard is a Great Deal'
+                    />
+                <Card
+                    onClick = {this.setRedirect}
+                    header='<Agriculture.h>'
+                    meta='Blog'
+                    description='Modernizing Agricultural Business to a Great Standard is a Great Deal'
+                    />
+                <Card
+                    onClick = {this.setRedirect}
+                    header='<Agriculture.h>'
+                    meta='Blog'
+                    description='Modernizing Agricultural Business to a Great Standard is a Great Deal'
+                    />
+                <Card
+                    onClick = {this.setRedirect}
+                    header='<Agriculture.h>'
+                    meta='Blog'
+                    description='Modernizing Agricultural Business to a Great Standard is a Great Deal'
                 />
-                </Container>   
-                </div>
+            </Container>   
+            </div>
         );                
     }
 }
