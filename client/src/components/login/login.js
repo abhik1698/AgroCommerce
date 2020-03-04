@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Divider, Form, Grid, Segment} from 'semantic-ui-react';
 import {Redirect} from 'react-router-dom';
+import AfterLogin from './afterLogin';
 
 export default class LoginForm extends React.Component {
   
@@ -11,8 +12,9 @@ export default class LoginForm extends React.Component {
   setRedirect=() => {
     this.setState({
       redirect: true
-    })
-  }
+    });
+    return <AfterLogin state={this.state.redirect}/>
+  } 
 
   renderRedirect=() => {
     if (this.state.redirect) {

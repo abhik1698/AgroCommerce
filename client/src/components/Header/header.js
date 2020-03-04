@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Menu, Segment, Icon, Image} from 'semantic-ui-react';
+import {Menu, Segment, Icon, Image, Button} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 export default class MenuExampleSecondaryPointing extends Component {
@@ -49,13 +49,9 @@ export default class MenuExampleSecondaryPointing extends Component {
             </Menu.Item>
 
           <Menu.Menu position='right'>
-            <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
-              onClick={this.handleItemClick}
-              ><Icon name='log out' />
-                Logout
-            </Menu.Item>
+          {this.state.loggedIn ? <Button content="Login Chuth!a" onClick={() => {this.setState({loggedIn: !this.state.loggedIn}) }} /> : 
+        <Button content="Fuckin Logout, 'Thank you for learning state!'" 
+        onClick={() => {this.setState({loggedIn: !this.state.loggedIn})}} />}
 
           </Menu.Menu>
           </Menu>          
