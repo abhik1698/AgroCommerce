@@ -48,7 +48,7 @@ class Blogs extends React.Component {
                 this.setRedirect(blog._id);
               }}
               header={blog.title}
-              meta="Blog"
+              meta={blog.author}
               description={blog.body}
             />
             <Divider />

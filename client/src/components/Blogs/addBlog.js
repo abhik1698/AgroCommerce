@@ -7,6 +7,7 @@ class AddBlog extends Component {
   constructor() {
     super();
     this.state = {
+      author: "",
       title: "",
       body: ""
     };
@@ -21,15 +22,17 @@ class AddBlog extends Component {
     e.preventDefault();
 
     const post = {
+      author: this.state.author,
       title: this.state.title,
       body: this.state.body
     };
     console.log("post", post);
     this.props.createPost(post);
-    this.setState({ title: "", body: "" });
+    this.setState({ author: "", title: "", body: "" });
   }
 
   render() {
+    const { author, title, body } = this.state;
     return (
       <div>
         <form onSubmit={e => this.onSubmit(e)}>
@@ -37,17 +40,28 @@ class AddBlog extends Component {
             <h1>Add Blog</h1>
             <input
               type="text"
-              name="title"
-              placeholder="Title"
-              value={this.state.title}
+              name="author"
+              placeholder="Author Name"
+              value={author}
               onChange={this.onChange}
               required
             />
             <br />
+            <br />
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              value={title}
+              onChange={this.onChange}
+              required
+            />
+            <br />
+            <br />
             <textarea
               name="body"
               placeholder="Body"
-              value={this.state.body}
+              value={body}
               onChange={this.onChange}
             />
             <br />
