@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
-const Post = require("./api/models/postSchema");
 
 //BodyParser Middleware
 app.use(bodyParser.json());
@@ -12,21 +11,20 @@ app.use(
   })
 );
 
-// Enable CORS
+// Enabling CORS
 var cors = require("cors");
 app.use(cors());
 
 //Connect to Mongo
 mongoose
-  .connect("mongodb://127.0.0.1:27017/ecomus", {
+  .connect("mongodb://127.0.0.1:27017/agro", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-// app.use('/api/items', items);
-app.get("/", (req, res) => res.send("happy to be here" + Post));
+app.get("/", (req, res) => res.send("This is for API calls"));
 
 //Blogs
 const postsRoute = require("./api/routes/postsRoute");
