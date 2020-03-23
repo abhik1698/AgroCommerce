@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
-const Post = require("./backend/schemas/postSchema");
+const Post = require("./api/models/postSchema");
 
 //BodyParser Middleware
 app.use(bodyParser.json());
@@ -28,30 +28,9 @@ mongoose
 // app.use('/api/items', items);
 app.get("/", (req, res) => res.send("happy to be here" + Post));
 
-app.get("/getPosts", (req, res) => {
-  console.log("getting all posts");
-  Post.find({}, {}, { sort: { created: -1 } }, (err, posts) => {
-    if (err) {
-      res.send("error occured");
-    } else {
-      console.log(posts);
-      res.json(posts);
-    }
-  });
-});
-
-//Post Req
-app.post("/addPost", (req, res) => {
-  console.log("POST route");
-  Post.create(req.body, (err, post) => {
-    if (err) {
-      res.send("error saving post");
-    } else {
-      console.log(post);
-      res.send(post);
-    }
-  });
-});
+//Blogs
+const postsRoute = require("./api/routes/postsRoute");
+app.use("/api/posts", postsRoute);
 
 const port = process.env.PORT || 5000;
 

@@ -41,8 +41,9 @@ class Blogs extends React.Component {
         <AddBlog style={{ float: "right", position: "absolute" }} />
         <h1>Blogs</h1>
         {blogs.map(blog => (
-          <div key={blog._id} className="column">
+          <div className="column">
             <Card
+              key={blog._id}
               onClick={() => {
                 this.setRedirect(blog._id);
               }}
