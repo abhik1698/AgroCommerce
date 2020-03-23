@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { postContainer } from "./index";
+import { connect } from "react-redux";
+import { createPost } from "../../actions/postActions";
+import propTypes from "prop-types";
 
-class PostForm extends Component {
+class AddBlog extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,32 +24,25 @@ class PostForm extends Component {
       title: this.state.title,
       body: this.state.body
     };
-
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(post)
-    })
-      .then(res => res.json())
-      .then(res => console.log(res));
+    console.log("post", post);
+    this.props.createPost(post);
+    this.setState({ title: "", body: "" });
   }
 
   render() {
     return (
       <div>
         <form onSubmit={e => this.onSubmit(e)}>
-          <div style={postContainer}>
-            <h1>Add Post</h1>
+          <div style={{ float: "right" }}>
+            <h1>Add Blog</h1>
             <input
               type="text"
               name="title"
               placeholder="Title"
               value={this.state.title}
               onChange={this.onChange}
+              required
             />
-            <br />
             <br />
             <textarea
               name="body"
@@ -56,11 +51,7 @@ class PostForm extends Component {
               onChange={this.onChange}
             />
             <br />
-            <br />
             <button type="submit">Post it</button>
-            <br />
-            <br />
-            <hr />
           </div>
         </form>
       </div>
@@ -68,4 +59,11 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+AddBlog.propTypes = {
+  createPost: propTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { createPost } //propType
+)(AddBlog);

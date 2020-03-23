@@ -1,7 +1,11 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header/header";
-import { Index } from "./components/Home/index.js";
+import Index from "./components/Home";
+
+import store from "./store";
+import { Provider } from "react-redux";
+
 import LoginForm from "./components/Login/login.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Auth from "./components/Login/auth.js";
@@ -24,7 +28,11 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={Index} />
-          <Route path="/blogs" exact component={Blogs} />
+
+          <Provider store={store}>
+            <Route path="/blogs" exact component={Blogs} />
+          </Provider>
+
           <Route path="/login" exact render={() => <LoginForm auth={auth} />} />
           <Route
             path="/afterlogin"
