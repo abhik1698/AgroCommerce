@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { fetchPosts } from "../../actions/postActions";
 import propTypes from "prop-types";
 import AddBlog from "./addBlog";
+import Moment from "react-moment";
+import { text } from "body-parser";
 
 class Blogs extends React.Component {
   state = {
@@ -41,7 +43,8 @@ class Blogs extends React.Component {
         <AddBlog style={{ float: "right", position: "absolute" }} />
         <h1>Blogs</h1>
         {blogs.map(blog => (
-          <div key={blog._id} className="column">
+          <div key={blog._id} style={{ textAlign: "left" }}>
+            <Moment fromNow>{blog.created}</Moment>
             <Card
               key={blog._id}
               onClick={() => {
