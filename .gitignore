@@ -1,8 +1,8 @@
 node_modules
 .vscode
 
-yarn-debug.log*
-yarn-error.log*
+yarn-debug.log
+yarn-error.log
 
 build
 .env
