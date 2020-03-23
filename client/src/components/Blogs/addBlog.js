@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createPost } from "../../actions/postActions";
+import { createBlog } from "../../actions/blogActions";
 import propTypes from "prop-types";
 
 class AddBlog extends Component {
@@ -21,13 +21,13 @@ class AddBlog extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const post = {
+    const blog = {
       author: this.state.author,
       title: this.state.title,
       body: this.state.body
     };
-    console.log("post", post);
-    this.props.createPost(post);
+    console.log("Blog: ", blog);
+    this.props.createBlog(blog);
     this.setState({ author: "", title: "", body: "" });
   }
 
@@ -74,10 +74,10 @@ class AddBlog extends Component {
 }
 
 AddBlog.propTypes = {
-  createPost: propTypes.func.isRequired
+  createBlog: propTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { createPost } //propType
+  { createBlog } //propType
 )(AddBlog);

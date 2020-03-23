@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Container, Divider } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchPosts } from "../../actions/postActions";
+import { fetchBlogs } from "../../actions/blogActions";
 import propTypes from "prop-types";
 import AddBlog from "./addBlog";
 import Moment from "react-moment";
@@ -25,17 +25,19 @@ class Blogs extends React.Component {
       return <Redirect to={"" + this.state.blogId + ""} />;
     }
   };
-  componentWillMount() {
-    this.props.fetchPosts();
+  componentDidMount() {
+    this.props.fetchBlogs();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.newPost) {
-      this.props.posts.unshift(nextProps.newPost);
+  constructor(nextProps) {
+    super(nextProps);
+    if (nextProps.newBlog) {
+      this.props.blogs.unshift(nextProps.newBlog);
     }
   }
+
   render() {
-    const blogs = this.props.posts;
+    const blogs = this.props.blogs;
     return (
       <Container>
         {/* {this.renderRedirect} */}
@@ -65,17 +67,17 @@ class Blogs extends React.Component {
 }
 
 Blogs.propTypes = {
-  fetchPosts: propTypes.func.isRequired,
-  posts: propTypes.array.isRequired,
-  newPost: propTypes.object
+  fetchBlogs: propTypes.func.isRequired,
+  blogs: propTypes.array.isRequired,
+  newBlog: propTypes.object
 };
 
-const mapStateTOProps = state => ({
-  posts: state.posts.items, //state.posts becoz of var in Reducers -> index (postActions.js -> payload)
-  newPost: state.posts.item
+const mapStateToProps = state => ({
+  blogs: state.blogs.items, //state.posts becoz of var in Reducers -> index (postActions.js -> payload)
+  newBlog: state.blogs.item
 });
 
 export default connect(
-  mapStateTOProps,
-  { fetchPosts }
+  mapStateToProps,
+  { fetchBlogs }
 )(Blogs);

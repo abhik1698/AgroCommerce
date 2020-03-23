@@ -27,8 +27,8 @@ mongoose
 app.get("/", (req, res) => res.send("This is for API calls"));
 
 //Blogs
-const postsRoute = require("./api/routes/postsRoute");
-app.use("/api/posts", postsRoute);
+const blogsRoute = require("./api/routes/blogsRoute");
+app.use("/api/blogs", blogsRoute);
 
 const port = process.env.PORT || 5000;
 

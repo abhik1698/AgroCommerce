@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST } from "../actions/types";
+import { FETCH_BLOGS, NEW_BLOG } from "../actions/types";
 
 const initialState = {
   items: [],
@@ -7,13 +7,13 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case FETCH_POSTS:
+    case FETCH_BLOGS:
       console.log("Reducer!");
       return {
         ...state,
         items: action.payload
       };
-    case NEW_POST:
+    case NEW_BLOG:
       return {
         ...state,
         item: action.payload

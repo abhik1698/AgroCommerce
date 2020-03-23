@@ -1,2 +1,2 @@
-export const FETCH_POSTS = "FETCH_POSTS";
-export const NEW_POST = "NEW_POST";
+export const FETCH_BLOGS = "FETCH_BLOGS";
+export const NEW_BLOG = "NEW_BLOG";
