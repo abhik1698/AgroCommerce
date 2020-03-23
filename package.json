@@ -7,6 +7,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "yarn --cwd client start",
+    "add-packages": "yarn install && cd client && yarn install",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "nodemonConfig": {
