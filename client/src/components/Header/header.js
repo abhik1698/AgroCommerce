@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import { Menu, Segment, Icon, Image } from "semantic-ui-react";
+import { Menu, Segment, Icon, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class MenuExampleSecondaryPointing extends Component {
-  state = { activeItem: "home" };
+  state = { activeItem: "home", loggedIn: true };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name });
+  };
 
   render() {
-    const { activeItem } = this.state;
+    const { activeItem, loggedIn } = this.state;
 
     return (
       <center>
@@ -45,7 +47,7 @@ export default class MenuExampleSecondaryPointing extends Component {
               Blogs
             </Menu.Item>
 
-            <Menu.Item
+            {/* <Menu.Item
               as={Link}
               position="right"
               name="login"
@@ -55,25 +57,25 @@ export default class MenuExampleSecondaryPointing extends Component {
             >
               <Icon name="user" />
               Login
-            </Menu.Item>
+            </Menu.Item> */}
 
-            {/* <Menu.Menu position="right">
-              {this.state.loggedIn ? (
+            <Menu.Menu position="right">
+              {loggedIn ? (
                 <Button
                   content="Login"
                   onClick={() => {
-                    this.setState({ loggedIn: !this.state.loggedIn });
+                    this.setState({ loggedIn: !loggedIn });
                   }}
                 />
               ) : (
                 <Button
-                  content="Fuckin Logout, 'Thank you for learning state!'"
+                  content="Logout"
                   onClick={() => {
-                    this.setState({ loggedIn: !this.state.loggedIn });
+                    this.setState({ loggedIn: !loggedIn });
                   }}
                 />
               )}
-            </Menu.Menu> */}
+            </Menu.Menu>
           </Menu>
         </Segment>
       </center>

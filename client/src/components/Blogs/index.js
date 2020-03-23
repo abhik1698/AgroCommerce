@@ -44,17 +44,19 @@ class Blogs extends React.Component {
         <h1>Blogs</h1>
         {blogs.map(blog => (
           <div key={blog._id} style={{ textAlign: "left" }}>
-            <Moment fromNow>{blog.created}</Moment>
+            <Moment key={1} fromNow>
+              {blog.created}
+            </Moment>
             <Card
-              key={blog._id}
               onClick={() => {
                 this.setRedirect(blog._id);
               }}
+              key={2}
               header={blog.title}
               meta={blog.author}
               description={blog.body}
             />
-            <Divider />
+            <Divider key={3} />
           </div>
         ))}
       </Container>
