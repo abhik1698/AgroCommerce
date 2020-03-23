@@ -22,7 +22,7 @@ export default class MenuExampleSecondaryPointing extends Component {
           <h1 style={{ color: "white", display: "inline" }}>&nbsp;Commerce</h1>
           <Menu inverted pointing secondary>
             <Menu.Item
-              position="right"
+              position="left"
               as={Link}
               name="home"
               to="/"
@@ -35,7 +35,7 @@ export default class MenuExampleSecondaryPointing extends Component {
 
             <Menu.Item
               as={Link}
-              position="right"
+              position="center"
               name="blogs"
               to="/blogs"
               active={activeItem === "blogs"}

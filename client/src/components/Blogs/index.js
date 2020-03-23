@@ -6,7 +6,6 @@ import { fetchPosts } from "../../actions/postActions";
 import propTypes from "prop-types";
 import AddBlog from "./addBlog";
 import Moment from "react-moment";
-import { text } from "body-parser";
 
 class Blogs extends React.Component {
   state = {
@@ -40,7 +39,8 @@ class Blogs extends React.Component {
     return (
       <Container>
         {/* {this.renderRedirect} */}
-        <AddBlog style={{ float: "right", position: "absolute" }} />
+        <AddBlog />
+
         <h1>Blogs</h1>
         {blogs.map(blog => (
           <div key={blog._id} style={{ textAlign: "left" }}>
