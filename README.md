@@ -3,7 +3,7 @@ MERN stack site
 
 #To Install Packages to root & client directories at once... 
 #From root, USE,
-# >yarn add-packages
+# > yarn add-packages
 
 From root, 
 # > yarn run dev 
