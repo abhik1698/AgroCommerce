@@ -19,7 +19,7 @@ class AddBlog extends Component {
   }
 
   onSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
 
     const blog = {
       author: this.state.author,

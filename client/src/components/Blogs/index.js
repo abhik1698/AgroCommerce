@@ -29,8 +29,7 @@ class Blogs extends React.Component {
     this.props.fetchBlogs();
   }
 
-  constructor(nextProps) {
-    super(nextProps);
+  componentWillReceiveProps(nextProps) {
     if (nextProps.newBlog) {
       this.props.blogs.unshift(nextProps.newBlog);
     }
