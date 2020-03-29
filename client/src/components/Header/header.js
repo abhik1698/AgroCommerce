@@ -3,7 +3,7 @@ import { Menu, Segment, Icon, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class MenuExampleSecondaryPointing extends Component {
-  state = { activeItem: "home", loggedIn: true };
+  state = { loggedIn: true };
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });

@@ -76,7 +76,4 @@ const mapStateToProps = state => ({
   newBlog: state.blogs.item
 });
 
-export default connect(
-  mapStateToProps,
-  { fetchBlogs }
-)(Blogs);
+export default connect(mapStateToProps, { fetchBlogs })(Blogs);
