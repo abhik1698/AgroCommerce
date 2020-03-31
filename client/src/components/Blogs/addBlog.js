@@ -77,7 +77,13 @@ AddBlog.propTypes = {
   createBlog: propTypes.func.isRequired
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    createBlog: blog => dispatch(createBlog(blog))
+  };
+};
+
 export default connect(
   null,
-  { createBlog } //propType
+  mapDispatchToProps //propType
 )(AddBlog);

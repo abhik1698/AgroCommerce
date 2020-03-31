@@ -5,10 +5,10 @@ const initialState = {
   item: {}
 };
 
-export default function(state = initialState, action) {
+export default function blogReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_BLOGS:
-      console.log("Reducer!");
+      console.log("Blog Reducer!");
       return {
         ...state,
         items: action.payload
@@ -19,6 +19,6 @@ export default function(state = initialState, action) {
         item: action.payload
       };
     default:
-      return state;
+      return { ...state };
   }
 }
