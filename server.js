@@ -1,4 +1,5 @@
 const express = require("express");
+
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
@@ -25,6 +26,10 @@ mongoose
   .catch(err => console.log(err));
 
 app.get("/", (req, res) => res.send("This is for API calls"));
+
+//Auth
+const authRoute = require("./api/routes/authRoutes");
+app.use("/api/auth", authRoute);
 
 //Blogs
 const blogsRoute = require("./api/routes/blogsRoute");
