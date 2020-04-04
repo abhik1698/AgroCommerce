@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Card, Container, Divider } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchBlogs } from "../../actions/blogActions";
 import propTypes from "prop-types";
@@ -45,9 +45,9 @@ class Blogs extends React.Component {
           <Fragment key={blog._id}>
             <Moment fromNow>{blog.created}</Moment>
             <Card
-              onClick={() => {
-                this.setRedirect(blog._id);
-              }}
+              // onClick={() => {
+              //   this.setRedirect(blog._id);
+              // }}
               header={blog.title}
               meta={blog.author}
               description={blog.body}
