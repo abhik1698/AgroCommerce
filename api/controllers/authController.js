@@ -7,7 +7,10 @@ const addUser = (data, callback) => {
       console.log("User exists");
       return callback("User exists", 403, null);
     } else {
-      Auth.create(data, (err, user) => {
+      let auth = new Auth(data);
+      auth.password = auth.genHash(data.password);
+
+      auth.save((err, user) => {
         if (err) {
           console.log("error adding User");
           console.log(err);
@@ -29,7 +32,7 @@ const login = (credentials, callback) => {
       if (
         !!user &&
         credentials.username === user.username &&
-        credentials.password === user.password
+        user.compareHash(credentials.password)
       ) {
         return callback(err, 200, user);
       }
