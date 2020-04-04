@@ -8,23 +8,23 @@ import AddBlog from "./addBlog";
 import Moment from "react-moment";
 
 class Blogs extends React.Component {
-  state = {
-    redirect: false,
-    blogId: "",
-  };
+  // state = {
+  //   redirect: false,
+  //   blogId: "",
+  // };
 
-  setRedirect = (blogId) => {
-    this.setState({
-      redirect: true,
-      blogId: blogId,
-    });
-  };
+  // setRedirect = (blogId) => {
+  //   this.setState({
+  //     redirect: true,
+  //     blogId: blogId,
+  //   });
+  // };
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to={"" + this.state.blogId + ""} />;
-    }
-  };
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to={"/" + this.state.blogId + ""} />;
+  //   }
+  // };
   componentDidMount() {
     this.props.fetchBlogs();
   }
@@ -37,7 +37,7 @@ class Blogs extends React.Component {
     }
     return (
       <Container>
-        {/* {this.renderRedirect} */}
+        {/* {this.renderRedirect()} */}
         <AddBlog />
 
         <h1>Blogs</h1>
