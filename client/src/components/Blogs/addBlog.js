@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { createBlog } from "../../actions/blogActions";
-import propTypes from "prop-types";
+// import propTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { Input, Button } from "antd";
 
@@ -75,10 +75,10 @@ class AddBlog extends Component {
   }
 }
 
-AddBlog.propTypes = {
-  createBlog: propTypes.func.isRequired,
-  token: propTypes.string.isRequired,
-};
+// AddBlog.propTypes = {
+//   createBlog: propTypes.func.isRequired,
+//   token: propTypes.string.isRequired,
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return {

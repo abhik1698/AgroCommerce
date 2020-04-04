@@ -41,8 +41,8 @@ class Blogs extends React.Component {
         <AddBlog />
 
         <h1>Blogs</h1>
-        {blogs.map((blog) => (
-          <Fragment key={blog._id}>
+        {blogs.map((blog, index) => (
+          <Fragment key={index}>
             <Moment fromNow>{blog.created}</Moment>
             <Card
               // onClick={() => {
