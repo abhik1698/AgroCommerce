@@ -10,6 +10,7 @@ class Auth extends Component {
   state = {
     username: "",
     password: "",
+    flag: 0,
   };
 
   _handleLogin = (e) => {
@@ -27,6 +28,7 @@ class Auth extends Component {
       };
 
       this.props.login(credentials);
+      this.setState({ flag: 1 });
     }
   };
 
@@ -51,6 +53,7 @@ class Auth extends Component {
                 type="text"
                 name="username"
                 placeholder="username"
+                required
                 value={username}
                 onChange={(e) =>
                   this.setState({ [e.target.name]: e.target.value })
@@ -62,6 +65,7 @@ class Auth extends Component {
                 type="password"
                 name="password"
                 placeholder="password"
+                required
                 value={password}
                 onChange={(e) =>
                   this.setState({ [e.target.name]: e.target.value })
@@ -72,6 +76,11 @@ class Auth extends Component {
               <Button htmlType="submit">
                 {this.props.token ? "Logout" : "Login"}
               </Button>
+              <p style={{ color: "red" }}>
+                {this.state.flag === 1 &&
+                  !this.props.token &&
+                  "Credentials mismatch"}
+              </p>
             </form>
           </Fragment>
         ) : (

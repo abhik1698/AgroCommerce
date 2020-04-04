@@ -65,6 +65,7 @@ class SignUp extends Component {
             type="password"
             name="confirmNPassword"
             placeholder="Confirm password"
+            required
             value={confirmNPassword}
             onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
           />
