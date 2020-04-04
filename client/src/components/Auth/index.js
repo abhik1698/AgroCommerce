@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { login, logout } from "../../actions/authActions";
 import SignUp from "./signup";
 import { Input, Button } from "antd";
+import { withRouter } from "react-router-dom";
 // import propTypes from "prop-types";
 
 class Auth extends Component {
@@ -35,7 +36,7 @@ class Auth extends Component {
 
     return (
       <div>
-        {!this.props.token && (
+        {!this.props.token ? (
           <Fragment>
             <div style={{ float: "left", marginLeft: 500 }}>
               <SignUp />
@@ -81,6 +82,8 @@ class Auth extends Component {
               </p>
             </form>
           </Fragment>
+        ) : (
+          this.props.history.push("/")
         )}
       </div>
     );
@@ -95,4 +98,4 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
 });
 
-export default connect(mapStateToProps, { login, logout })(Auth);
+export default connect(mapStateToProps, { login, logout })(withRouter(Auth));
