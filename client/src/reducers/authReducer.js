@@ -2,8 +2,8 @@ import { NEW_USER, LOGIN, LOGOUT } from "../actions/types";
 
 const initialState = {
   newUser: {},
-  token: localStorage.getItem("userToken"),
-  addedUser: false,
+  token: {},
+  addedUser: {},
 };
 
 export default function authReducer(state = initialState, action) {
