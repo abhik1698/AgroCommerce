@@ -8,6 +8,7 @@ class SignUp extends Component {
     nUsername: "",
     nPassword: "",
     confirmNPassword: "",
+    flag: 0,
   };
 
   _handleSignup = (e) => {
@@ -26,6 +27,7 @@ class SignUp extends Component {
       nUsername: "",
       nPassword: "",
       confirmNPassword: "",
+      flag: 1,
     });
   };
 
@@ -71,9 +73,10 @@ class SignUp extends Component {
           <br />
           <button type="submit">Signup</button>
           <p>
-            {this.props.addedUser
-              ? "Account created successully"
-              : "Username Taken"}
+            {this.state.flag === 1 &&
+              (this.props.addedUser
+                ? "Account created successully"
+                : "Username Taken")}
           </p>
         </form>
       </div>
