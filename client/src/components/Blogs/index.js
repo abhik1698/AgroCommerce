@@ -29,14 +29,12 @@ class Blogs extends React.Component {
     this.props.fetchBlogs();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.newBlog) {
-      if (nextProps.newBlog.title) this.props.blogs.unshift(nextProps.newBlog);
-    }
-  }
-
   render() {
-    const blogs = this.props.blogs;
+    var blogs = this.props.blogs;
+    const newBlog = this.props.newBlog;
+    if (blogs[0] !== newBlog && newBlog.title) {
+      blogs.unshift(newBlog);
+    }
     return (
       <Container>
         {/* {this.renderRedirect} */}
