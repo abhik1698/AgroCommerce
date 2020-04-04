@@ -62,7 +62,10 @@ class Header extends Component {
             </Menu.Item> */}
 
             <Menu.Menu as={Link} name="login" to="/login" position="right">
-              <Button content={this.props.token ? "Logout" : "Login"} />
+              <Button
+                content={this.props.token ? "Logout" : "Login"}
+                onClick={this.props.token && this.props.logout}
+              />
             </Menu.Menu>
           </Menu>
         </Segment>

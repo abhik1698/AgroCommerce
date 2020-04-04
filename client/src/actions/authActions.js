@@ -26,9 +26,11 @@ export const login = (credentials) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      localStorage.setItem("userToken", data.token);
-      dispatch({ type: LOGIN, payload: data.token });
-      console.log("login response: " + JSON.stringify(data));
+      if (data) {
+        localStorage.setItem("userToken", data.token);
+        dispatch({ type: LOGIN, payload: data.token });
+        console.log("login response: " + JSON.stringify(data));
+      }
     })
     .catch((err) => console.log("ERROR: " + err));
 };

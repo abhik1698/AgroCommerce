@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import Auth from "../Auth/index";
 export default class Index extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loggedIn: false
-    };
-  }
-
   render() {
-    return <Auth />;
+    return <h1>Home</h1>;
   }
 }
