@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { createBlog } from "../../actions/blogActions";
 import propTypes from "prop-types";
@@ -35,51 +35,34 @@ class AddBlog extends Component {
   }
 
   render() {
-    const { author, title, body } = this.state;
+    const { title, body } = this.state;
     return (
-      <div style={{ float: "right" }}>
-        {this.props.token ? (
-          <form onSubmit={(e) => this.onSubmit(e)}>
-            <div>
-              <h1>Add Blog</h1>
-              <Input
-                type="text"
-                name="author"
-                placeholder="Author Name"
-                value={author}
-                onChange={this.onChange}
-                required
-              />
-              <br />
-              <br />
-              <Input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={title}
-                onChange={this.onChange}
-                required
-              />
-              <br />
-              <br />
-              <TextArea
-                name="body"
-                placeholder="Body"
-                value={body}
-                onChange={this.onChange}
-              />
-              <br />
-              <br />
-              <Button htmlType="submit">Post it</Button>
-            </div>
-          </form>
-        ) : (
-          <Button
-            style={{ fontWeight: "bold", fontSize: 20 }}
-            onClick={() => this.props.history.push("/login")}
-          >
-            Login to add blogs
-          </Button>
+      <div>
+        {this.props.token && (
+          <Fragment>
+            <form onSubmit={(e) => this.onSubmit(e)}>
+              <div>
+                <br />
+                <Input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  value={title}
+                  onChange={this.onChange}
+                  required
+                />
+                <TextArea
+                  name="body"
+                  placeholder="Body"
+                  value={body}
+                  onChange={this.onChange}
+                />
+                <Button htmlType="submit">Post it</Button>
+                <br />
+                <br />
+              </div>
+            </form>
+          </Fragment>
         )}
       </div>
     );

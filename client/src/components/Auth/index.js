@@ -84,7 +84,7 @@ class Auth extends Component {
             </form>
           </Fragment>
         ) : (
-          this.props.history.push("/blogs")
+          this.props.history.push("/")
         )}
       </div>
     );

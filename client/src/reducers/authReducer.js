@@ -2,7 +2,7 @@ import { NEW_USER, LOGIN, LOGOUT } from "../actions/types";
 
 const initialState = {
   newUser: {},
-  token: {},
+  token: localStorage.getItem("userToken"),
   addedUser: {},
 };
 
