@@ -24,7 +24,7 @@ class AddBlog extends Component {
   onSubmit(e) {
     e.preventDefault();
     const blog = {
-      author: JSON.parse(localStorage.getItem("user")).username,
+      author: JSON.parse(localStorage.getItem("user")).fullname,
       title: this.state.title,
       body: this.state.body,
     };

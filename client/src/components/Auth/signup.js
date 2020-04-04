@@ -6,6 +6,7 @@ import { Input, Button } from "antd";
 
 class SignUp extends Component {
   state = {
+    nFullname: "",
     nUsername: "",
     nPassword: "",
     confirmNPassword: "",
@@ -15,10 +16,11 @@ class SignUp extends Component {
   _handleSignup = (e) => {
     e.preventDefault();
 
-    const { nUsername, nPassword, confirmNPassword } = this.state;
+    const { nFullname, nUsername, nPassword, confirmNPassword } = this.state;
 
     if (nPassword === confirmNPassword) {
       const user = {
+        fullname: nFullname,
         username: nUsername,
         password: nPassword,
       };
@@ -34,12 +36,21 @@ class SignUp extends Component {
   };
 
   render() {
-    const { nUsername, nPassword, confirmNPassword } = this.state;
+    const { nFullname, nUsername, nPassword, confirmNPassword } = this.state;
 
     return (
       <div>
         <form onSubmit={(e) => this._handleSignup(e)}>
           <h2>Signup</h2>
+          <Input
+            type="text"
+            name="nFullname"
+            placeholder="Full name"
+            value={nFullname}
+            onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
+            required
+          />
+          <br />
           <br />
           <Input
             type="text"

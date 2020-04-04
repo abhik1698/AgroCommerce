@@ -54,7 +54,7 @@ class Header extends Component {
                 content={
                   this.props.token
                     ? "logout ( " +
-                      JSON.parse(localStorage.getItem("user")).username +
+                      JSON.parse(localStorage.getItem("user")).fullname +
                       " )"
                     : "login"
                 }
