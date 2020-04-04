@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login, logout } from "../../actions/authActions";
 import SignUp from "./signup";
+import { Input, Button } from "antd";
 // import propTypes from "prop-types";
 
 class Auth extends Component {
@@ -33,12 +34,17 @@ class Auth extends Component {
 
     return (
       <div>
-        <SignUp />
+        <div style={{ float: "left", marginLeft: 500 }}>
+          <SignUp />
+        </div>
 
-        <form onSubmit={this._handleLogin}>
-          Login
+        <form
+          onSubmit={this._handleLogin}
+          style={{ float: "right", marginRight: 500 }}
+        >
+          <h2>Login</h2>
           <br />
-          <input
+          <Input
             type="text"
             name="username"
             placeholder="username"
@@ -46,7 +52,8 @@ class Auth extends Component {
             onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
           />
           <br />
-          <input
+          <br />
+          <Input
             type="password"
             name="password"
             placeholder="password"
@@ -54,7 +61,10 @@ class Auth extends Component {
             onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
           />
           <br />
-          <button type="submit">{this.props.token ? "Logout" : "Login"}</button>
+          <br />
+          <Button htmlType="submit">
+            {this.props.token ? "Logout" : "Login"}
+          </Button>
         </form>
       </div>
     );

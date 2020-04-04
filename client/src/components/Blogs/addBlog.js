@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createBlog } from "../../actions/blogActions";
 import propTypes from "prop-types";
+import { Input, Button } from "antd";
 
+const { TextArea } = Input;
 class AddBlog extends Component {
   constructor() {
     super();
     this.state = {
       author: "",
       title: "",
-      body: ""
+      body: "",
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -24,7 +26,7 @@ class AddBlog extends Component {
     const blog = {
       author: this.state.author,
       title: this.state.title,
-      body: this.state.body
+      body: this.state.body,
     };
     console.log("Blog: ", blog);
     this.props.createBlog(blog);
@@ -35,10 +37,10 @@ class AddBlog extends Component {
     const { author, title, body } = this.state;
     return (
       <div>
-        <form onSubmit={e => this.onSubmit(e)}>
+        <form onSubmit={(e) => this.onSubmit(e)}>
           <div style={{ float: "right" }}>
             <h1>Add Blog</h1>
-            <input
+            <Input
               type="text"
               name="author"
               placeholder="Author Name"
@@ -48,7 +50,7 @@ class AddBlog extends Component {
             />
             <br />
             <br />
-            <input
+            <Input
               type="text"
               name="title"
               placeholder="Title"
@@ -58,14 +60,14 @@ class AddBlog extends Component {
             />
             <br />
             <br />
-            <textarea
+            <TextArea
               name="body"
               placeholder="Body"
               value={body}
               onChange={this.onChange}
             />
             <br />
-            <button type="submit">Post it</button>
+            <Button htmlType="submit">Post it</Button>
           </div>
         </form>
       </div>
@@ -74,12 +76,12 @@ class AddBlog extends Component {
 }
 
 AddBlog.propTypes = {
-  createBlog: propTypes.func.isRequired
+  createBlog: propTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    createBlog: blog => dispatch(createBlog(blog))
+    createBlog: (blog) => dispatch(createBlog(blog)),
   };
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addUser } from "../../actions/authActions";
+import { Input, Button } from "antd";
 // import propTypes from "prop-types";
 
 class SignUp extends Component {
@@ -14,21 +15,22 @@ class SignUp extends Component {
   _handleSignup = (e) => {
     e.preventDefault();
 
-    const { nUsername, nPassword } = this.state;
+    const { nUsername, nPassword, confirmNPassword } = this.state;
 
-    const user = {
-      username: nUsername,
-      password: nPassword,
-    };
+    if (nPassword === confirmNPassword) {
+      const user = {
+        username: nUsername,
+        password: nPassword,
+      };
 
-    this.props.addUser(user);
+      this.props.addUser(user);
 
-    this.setState({
-      nUsername: "",
-      nPassword: "",
-      confirmNPassword: "",
-      flag: 1,
-    });
+      this.setState({
+        flag: 1,
+      });
+    } else {
+      alert("Passwords don't match!");
+    }
   };
 
   render() {
@@ -36,16 +38,10 @@ class SignUp extends Component {
 
     return (
       <div>
-        <form
-          onSubmit={(e) => {
-            nPassword === confirmNPassword
-              ? this._handleSignup(e)
-              : alert("Password doesn't match");
-          }}
-        >
-          Signup
+        <form onSubmit={(e) => this._handleSignup(e)}>
+          <h2>Signup</h2>
           <br />
-          <input
+          <Input
             type="text"
             name="nUsername"
             placeholder="Username"
@@ -54,7 +50,8 @@ class SignUp extends Component {
             required
           />
           <br />
-          <input
+          <br />
+          <Input
             type="password"
             name="nPassword"
             placeholder="password"
@@ -63,7 +60,8 @@ class SignUp extends Component {
             required
           />
           <br />
-          <input
+          <br />
+          <Input
             type="password"
             name="confirmNPassword"
             placeholder="Confirm password"
@@ -71,8 +69,9 @@ class SignUp extends Component {
             onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
           />
           <br />
-          <button type="submit">Signup</button>
-          <p>
+          <br />
+          <Button htmlType="submit">Signup</Button>
+          <p style={{ color: this.props.addedUser ? "green" : "red" }}>
             {this.state.flag === 1 &&
               (this.props.addedUser
                 ? "Account created successully"
