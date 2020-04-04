@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Auth from "../Auth/index";
 export default class Index extends Component {
   constructor() {
     super();
@@ -9,6 +9,6 @@ export default class Index extends Component {
   }
 
   render() {
-    return <h1>Home</h1>;
+    return <Auth />;
   }
 }

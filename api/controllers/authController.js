@@ -2,10 +2,10 @@ const Auth = require("../models/authSchema");
 
 const addUser = (data, callback) => {
   Auth.findOne({ username: data.username }, (err, oldUser) => {
-    if (err) return callback(err, 500, oldUser);
-    else if (data.username === oldUser.username) {
+    if (err) return callback(err, 500, null);
+    else if (oldUser && data.username === oldUser.username) {
       console.log("User exists");
-      return callback("User exists", 400, oldUser);
+      return callback("User exists", 400, data.username);
     } else {
       Auth.create(data, (err, user) => {
         if (err) {

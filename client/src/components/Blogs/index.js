@@ -10,13 +10,13 @@ import Moment from "react-moment";
 class Blogs extends React.Component {
   state = {
     redirect: false,
-    blogId: ""
+    blogId: "",
   };
 
-  setRedirect = blogId => {
+  setRedirect = (blogId) => {
     this.setState({
       redirect: true,
-      blogId: blogId
+      blogId: blogId,
     });
   };
 
@@ -43,7 +43,7 @@ class Blogs extends React.Component {
         <AddBlog />
 
         <h1>Blogs</h1>
-        {blogs.map(blog => (
+        {blogs.map((blog) => (
           <div key={blog._id} style={{ textAlign: "left" }}>
             <Moment key={1} fromNow>
               {blog.created}
@@ -68,12 +68,12 @@ class Blogs extends React.Component {
 Blogs.propTypes = {
   fetchBlogs: propTypes.func.isRequired,
   blogs: propTypes.array.isRequired,
-  newBlog: propTypes.object
+  newBlog: propTypes.object,
 };
 
-const mapStateToProps = state => ({
-  blogs: state.blogs.items, //state.posts becoz of var in Reducers -> index (postActions.js -> payload)
-  newBlog: state.blogs.item
+const mapStateToProps = (state) => ({
+  blogs: state.blogs.items, //state.blogs becoz of var in Reducers -> index (postActions.js -> payload)
+  newBlog: state.blogs.item,
 });
 
 export default connect(mapStateToProps, { fetchBlogs })(Blogs);
