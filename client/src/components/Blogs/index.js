@@ -31,7 +31,7 @@ class Blogs extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newBlog) {
-      this.props.blogs.unshift(nextProps.newBlog);
+      if (nextProps.newBlog.title) this.props.blogs.unshift(nextProps.newBlog);
     }
   }
 
