@@ -49,15 +49,21 @@ class AddBlog extends Component {
                   placeholder="Title"
                   value={title}
                   onChange={this.onChange}
+                  style={{ textAlign: "center" }}
                   required
                 />
                 <TextArea
                   name="body"
                   placeholder="Body"
+                  style={{ textAlign: "center" }}
                   value={body}
                   onChange={this.onChange}
                 />
-                <Button htmlType="submit">Post it</Button>
+                <div style={{ textAlign: "center" }}>
+                  <Button htmlType="submit" style={{ color: "red" }}>
+                    Add
+                  </Button>
+                </div>
                 <br />
                 <br />
               </div>

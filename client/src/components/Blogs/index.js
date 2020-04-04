@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Card, Container, Divider } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -44,21 +44,18 @@ class Blogs extends React.Component {
 
         <h1>Blogs</h1>
         {blogs.map((blog) => (
-          <div key={blog._id} style={{ textAlign: "left" }}>
-            <Moment key={1} fromNow>
-              {blog.created}
-            </Moment>
+          <Fragment key={blog._id}>
+            <Moment fromNow>{blog.created}</Moment>
             <Card
               onClick={() => {
                 this.setRedirect(blog._id);
               }}
-              key={2}
               header={blog.title}
               meta={blog.author}
               description={blog.body}
             />
-            <Divider key={3} />
-          </div>
+            <Divider />
+          </Fragment>
         ))}
       </Container>
     );
