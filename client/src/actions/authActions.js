@@ -32,7 +32,7 @@ export const login = (credentials) => (dispatch) => {
         console.log(data);
         dispatch({
           type: LOGIN,
-          payload: { token: data.token },
+          payload: data.token,
         });
       }
     })

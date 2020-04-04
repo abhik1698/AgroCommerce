@@ -26,7 +26,7 @@ export default function authReducer(state = initialState, action) {
     case LOGIN:
       return {
         ...state,
-        token: action.payload.token,
+        token: action.payload,
       };
     case LOGOUT:
       return { ...state, token: null };

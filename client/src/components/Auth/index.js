@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { login, logout } from "../../actions/authActions";
 import SignUp from "./signup";
 import { Input, Button } from "antd";
-import { withRouter } from "react-router-dom";
 // import propTypes from "prop-types";
 
 class Auth extends Component {
@@ -17,7 +16,6 @@ class Auth extends Component {
     e.preventDefault();
     console.log("redux token: " + this.props.token);
     if (this.props.token) {
-      localStorage.removeItem("userToken");
       this.props.logout();
     } else {
       const { username, password } = this.state;
@@ -37,14 +35,14 @@ class Auth extends Component {
 
     return (
       <div>
-        {!this.props.token ? (
+        {!this.props.token && (
           <Fragment>
             <div style={{ float: "left", marginLeft: 500 }}>
               <SignUp />
             </div>
 
             <form
-              onSubmit={this._handleLogin}
+              onSubmit={(e) => this._handleLogin(e)}
               style={{ float: "right", marginRight: 500 }}
             >
               <h2>Login</h2>
@@ -83,8 +81,6 @@ class Auth extends Component {
               </p>
             </form>
           </Fragment>
-        ) : (
-          this.props.history.push("/")
         )}
       </div>
     );
@@ -99,4 +95,4 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
 });
 
-export default connect(mapStateToProps, { login, logout })(withRouter(Auth));
+export default connect(mapStateToProps, { login, logout })(Auth);
