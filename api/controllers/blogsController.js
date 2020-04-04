@@ -11,12 +11,11 @@ const addBlog = (data, callback) => {
   });
 };
 
-const getAllBlogs = callback => {
+const getAllBlogs = (callback) => {
   Blog.find({}, {}, { sort: { created: -1 } }, (err, blogs) => {
     if (err) {
       return callback(err, 500, blogs);
     } else {
-      console.log(blogs);
       return callback(err, 200, blogs);
     }
   });
@@ -24,5 +23,5 @@ const getAllBlogs = callback => {
 
 module.exports = {
   addBlog,
-  getAllBlogs
+  getAllBlogs,
 };

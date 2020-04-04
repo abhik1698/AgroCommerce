@@ -1,33 +1,34 @@
 import { FETCH_BLOGS, NEW_BLOG } from "./types";
 
-export const fetchBlogs = () => dispatch => {
+export const fetchBlogs = () => (dispatch) => {
   console.log("Fetching");
   fetch("http://localhost:5000/api/blogs/getAllBlogs")
-    .then(response => response.json())
-    .then(data =>
+    .then((response) => response.json())
+    .then((data) =>
       dispatch({
         type: FETCH_BLOGS,
-        payload: data.blogs
+        payload: data.blogs,
       })
     );
 };
 
-export const createBlog = blogData => dispatch => {
+export const createBlog = (blogData) => (dispatch) => {
   console.log("Before Blog Action: " + JSON.stringify(blogData));
   fetch("http://localhost:5000/api/blogs/addBlog", {
     method: "POST",
     headers: {
-      "content-type": "application/json"
+      "content-type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("userToken")}`,
     },
-    body: JSON.stringify(blogData)
+    body: JSON.stringify(blogData),
   })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       console.log("After Blog Action: " + JSON.stringify(data));
       dispatch({
         type: NEW_BLOG,
-        payload: data.blog
+        payload: data.blog,
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
