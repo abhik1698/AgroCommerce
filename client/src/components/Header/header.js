@@ -51,11 +51,11 @@ class Header extends Component {
 
             <Menu.Menu as={Link} name="login" to="/login" position="right">
               <Button
+                style={{ color: "black" }}
                 content={
                   this.props.token
-                    ? "logout ( " +
-                      JSON.parse(localStorage.getItem("user")).fullname +
-                      " )"
+                    ? JSON.parse(localStorage.getItem("user")).fullname +
+                      " - logout"
                     : "login"
                 }
                 onClick={this.props.token && this.props.logout}
