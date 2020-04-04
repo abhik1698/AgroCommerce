@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { Menu, Segment, Icon, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { login, logout } from "../../actions/authActions";
+// import propTypes from "prop-types";
 
-export default class MenuExampleSecondaryPointing extends Component {
-  state = { loggedIn: true };
+class Header extends Component {
+  state = { activeItem: "home" };
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
   };
 
   render() {
-    const { activeItem, loggedIn } = this.state;
+    const { activeItem } = this.state;
 
     return (
       <center>
@@ -37,7 +40,6 @@ export default class MenuExampleSecondaryPointing extends Component {
 
             <Menu.Item
               as={Link}
-              position="center"
               name="blogs"
               to="/blogs"
               active={activeItem === "blogs"}
@@ -59,22 +61,8 @@ export default class MenuExampleSecondaryPointing extends Component {
               Login
             </Menu.Item> */}
 
-            <Menu.Menu position="right">
-              {loggedIn ? (
-                <Button
-                  content="Login"
-                  onClick={() => {
-                    this.setState({ loggedIn: !loggedIn });
-                  }}
-                />
-              ) : (
-                <Button
-                  content="Logout"
-                  onClick={() => {
-                    this.setState({ loggedIn: !loggedIn });
-                  }}
-                />
-              )}
+            <Menu.Menu as={Link} name="login" to="/login" position="right">
+              <Button content={this.props.token ? "Logout" : "Login"} />
             </Menu.Menu>
           </Menu>
         </Segment>
@@ -82,3 +70,13 @@ export default class MenuExampleSecondaryPointing extends Component {
     );
   }
 }
+
+// Header.propTypes = {
+//   token: propTypes.string.isRequired,
+// };
+
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+});
+
+export default connect(mapStateToProps, { login, logout })(Header);

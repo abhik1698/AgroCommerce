@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addUser, fetchUsers } from "../../actions/authActions";
+import { addUser } from "../../actions/authActions";
 // import propTypes from "prop-types";
 
 class SignUp extends Component {
   state = {
     nUsername: "",
     nPassword: "",
-    confirmNPassword: ""
+    confirmNPassword: "",
   };
 
-  _handleSignup = e => {
+  _handleSignup = (e) => {
     e.preventDefault();
 
     const { nUsername, nPassword } = this.state;
 
     const user = {
       username: nUsername,
-      password: nPassword
+      password: nPassword,
     };
+
     this.props.addUser(user);
-    this.setState({ nUsername: "", nPassword: "", confirmNPassword: "" });
+
+    this.setState({
+      nUsername: "",
+      nPassword: "",
+      confirmNPassword: "",
+    });
   };
 
   render() {
@@ -29,7 +35,7 @@ class SignUp extends Component {
     return (
       <div>
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             nPassword === confirmNPassword
               ? this._handleSignup(e)
               : alert("Password doesn't match");
@@ -42,7 +48,7 @@ class SignUp extends Component {
             name="nUsername"
             placeholder="Username"
             value={nUsername}
-            onChange={e => this.setState({ [e.target.name]: e.target.value })}
+            onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
             required
           />
           <br />
@@ -51,7 +57,7 @@ class SignUp extends Component {
             name="nPassword"
             placeholder="password"
             value={nPassword}
-            onChange={e => this.setState({ [e.target.name]: e.target.value })}
+            onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
             required
           />
           <br />
@@ -60,25 +66,33 @@ class SignUp extends Component {
             name="confirmNPassword"
             placeholder="Confirm password"
             value={confirmNPassword}
-            onChange={e => this.setState({ [e.target.name]: e.target.value })}
+            onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
           />
           <br />
           <button type="submit">Signup</button>
+          <p>
+            {this.props.addedUser
+              ? "Account created successully"
+              : "Username Taken"}
+          </p>
         </form>
       </div>
     );
   }
 }
 
-// Auth.propTypes = {
-//   addUser: propTypes.func.isRequired
+// SignUp.propTypes = {
+//   addedUser: propTypes.bool.isRequired,
 // };
 
-const mapDipatchStateToProps = dispatch => {
-  return {
-    addUser: user => dispatch(addUser(user)),
-    fetchUsers: username => dispatch(fetchUsers(username))
-  };
-};
+// const mapDipatchStateToProps = (dispatch) => {
+//   return {
+//     addUser: (user) => dispatch(addUser(user)),
+//   };
+// };
 
-export default connect(null, mapDipatchStateToProps)(SignUp);
+const mapStateToProps = (state) => ({
+  addedUser: state.auth.addedUser,
+});
+
+export default connect(mapStateToProps, { addUser })(SignUp);

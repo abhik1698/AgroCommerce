@@ -5,15 +5,15 @@ const addUser = (data, callback) => {
     if (err) return callback(err, 500, null);
     else if (oldUser && data.username === oldUser.username) {
       console.log("User exists");
-      return callback("User exists", 400, data.username);
+      return callback("User exists", 403, null);
     } else {
       Auth.create(data, (err, user) => {
         if (err) {
           console.log("error adding User");
           console.log(err);
-          return callback(err, 500, user);
+          return callback(err, 500, null);
         } else {
-          return callback(err, 200, user);
+          return callback(null, 200, user);
         }
       });
     }
@@ -52,5 +52,5 @@ const getUser = (username, callback) => {
 module.exports = {
   addUser,
   getUser,
-  login
+  login,
 };

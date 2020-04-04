@@ -9,12 +9,9 @@ export const addUser = (user) => (dispatch) => {
     body: JSON.stringify(user),
   })
     .then((res) => res.json())
-    .then((err, data) => {
-      console.log(err);
-      if (!err) {
-        dispatch({ type: NEW_USER, payload: data.user });
-        console.log(JSON.stringify(data) + " added to DB successfully");
-      }
+    .then((data) => {
+      console.log(data);
+      dispatch({ type: NEW_USER, payload: data.user });
     })
     .catch((err) => console.log("ERROR: " + err));
 };

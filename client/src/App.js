@@ -5,7 +5,8 @@ import Index from "./components/Home";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Blogs from "./components/Blogs/index.js";
+import Blogs from "./components/Blogs";
+import Auth from "./components/Auth";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Index} />
           <Route path="/blogs" exact component={Blogs} />
+          <Route path="/login" exact component={Auth} />
         </Switch>
       </div>
     </BrowserRouter>

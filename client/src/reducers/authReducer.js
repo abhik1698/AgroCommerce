@@ -4,6 +4,7 @@ const initialState = {
   users: [],
   newUser: {},
   token: localStorage.getItem("userToken"),
+  addedUser: false,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -12,11 +13,20 @@ export default function authReducer(state = initialState, action) {
     case FETCH_USERS:
       return { ...state, users: action.payload };
     case NEW_USER:
-      return { ...state, newUser: action.payload };
+      if (!action.payload) {
+        return {
+          ...state,
+          newUser: action.payload,
+          addedUser: false,
+        };
+      }
+      console.log(JSON.stringify(action.payload) + " added to DB successfully");
+      return {
+        ...state,
+        newUser: action.payload,
+        addedUser: true,
+      };
     case LOGIN:
-      console.log(
-        "token in localStorage: " + localStorage.getItem("userToken")
-      );
       return { ...state, token: action.payload };
     case LOGOUT:
       return { ...state, token: null };

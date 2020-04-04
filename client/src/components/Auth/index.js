@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login, logout } from "../../actions/authActions";
 import SignUp from "./signup";
-import propTypes from "prop-types";
+// import propTypes from "prop-types";
 
 class Auth extends Component {
   state = {
     username: "",
     password: "",
-    login: !!this.props.token ? true : false,
   };
 
   _handleLogin = (e) => {
@@ -30,7 +29,7 @@ class Auth extends Component {
   };
 
   render() {
-    const { username, password, login } = this.state;
+    const { username, password } = this.state;
 
     return (
       <div>
@@ -62,9 +61,9 @@ class Auth extends Component {
   }
 }
 
-Auth.propTypes = {
-  token: propTypes.string.isRequired,
-};
+// Auth.propTypes = {
+//   token: propTypes.string.isRequired,
+// };
 
 const mapStateToProps = (state) => ({
   token: state.auth.token,

@@ -19,7 +19,7 @@ router.post("/login", (req, res) => {
       jwt.sign({ user }, "secretkey", (error, token) => {
         res.status(status).json({
           err,
-          token
+          token,
         });
       });
     } else {
