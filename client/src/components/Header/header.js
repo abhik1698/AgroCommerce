@@ -51,7 +51,13 @@ class Header extends Component {
 
             <Menu.Menu as={Link} name="login" to="/login" position="right">
               <Button
-                content={this.props.token ? "Logout" : "Login"}
+                content={
+                  this.props.token
+                    ? "logout ( " +
+                      JSON.parse(localStorage.getItem("user")).username +
+                      " )"
+                    : "login"
+                }
                 onClick={this.props.token && this.props.logout}
               />
             </Menu.Menu>
@@ -68,6 +74,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   token: state.auth.token,
+  userData: state.auth.userData,
 });
 
 export default connect(mapStateToProps, { login, logout })(Header);

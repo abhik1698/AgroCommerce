@@ -28,8 +28,12 @@ export const login = (credentials) => (dispatch) => {
     .then((data) => {
       if (data) {
         localStorage.setItem("userToken", data.token);
-        dispatch({ type: LOGIN, payload: data.token });
-        console.log("login response: " + JSON.stringify(data));
+        localStorage.setItem("user", JSON.stringify(data.user));
+        console.log(data);
+        dispatch({
+          type: LOGIN,
+          payload: { token: data.token },
+        });
       }
     })
     .catch((err) => console.log("ERROR: " + err));
@@ -39,6 +43,7 @@ export const logout = () => (dispatch) => {
   console.log("Now in logout AuthAction");
 
   localStorage.removeItem("userToken");
+  localStorage.removeItem("user");
   dispatch({ type: LOGOUT });
 };
 

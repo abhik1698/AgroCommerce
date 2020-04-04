@@ -24,7 +24,10 @@ export default function authReducer(state = initialState, action) {
         addedUser: true,
       };
     case LOGIN:
-      return { ...state, token: action.payload };
+      return {
+        ...state,
+        token: action.payload.token,
+      };
     case LOGOUT:
       return { ...state, token: null };
     default:

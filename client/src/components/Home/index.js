@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import Blogs from "../Blogs";
 import { connect } from "react-redux";
 class Home extends Component {
   render() {

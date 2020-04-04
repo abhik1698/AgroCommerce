@@ -20,6 +20,7 @@ router.post("/login", (req, res) => {
         res.status(status).json({
           err,
           token,
+          user,
         });
       });
     } else {

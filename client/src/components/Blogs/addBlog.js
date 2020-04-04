@@ -23,9 +23,8 @@ class AddBlog extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
     const blog = {
-      author: this.state.author,
+      author: JSON.parse(localStorage.getItem("user")).username,
       title: this.state.title,
       body: this.state.body,
     };
@@ -36,6 +35,7 @@ class AddBlog extends Component {
 
   render() {
     const { title, body } = this.state;
+
     return (
       <div>
         {this.props.token && (
