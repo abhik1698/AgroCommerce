@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createBlog } from "../../actions/blogActions";
 import propTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { Input, Button } from "antd";
 
 const { TextArea } = Input;
@@ -36,40 +37,50 @@ class AddBlog extends Component {
   render() {
     const { author, title, body } = this.state;
     return (
-      <div>
-        <form onSubmit={(e) => this.onSubmit(e)}>
-          <div style={{ float: "right" }}>
-            <h1>Add Blog</h1>
-            <Input
-              type="text"
-              name="author"
-              placeholder="Author Name"
-              value={author}
-              onChange={this.onChange}
-              required
-            />
-            <br />
-            <br />
-            <Input
-              type="text"
-              name="title"
-              placeholder="Title"
-              value={title}
-              onChange={this.onChange}
-              required
-            />
-            <br />
-            <br />
-            <TextArea
-              name="body"
-              placeholder="Body"
-              value={body}
-              onChange={this.onChange}
-            />
-            <br />
-            <Button htmlType="submit">Post it</Button>
-          </div>
-        </form>
+      <div style={{ float: "right" }}>
+        {this.props.token ? (
+          <form onSubmit={(e) => this.onSubmit(e)}>
+            <div>
+              <h1>Add Blog</h1>
+              <Input
+                type="text"
+                name="author"
+                placeholder="Author Name"
+                value={author}
+                onChange={this.onChange}
+                required
+              />
+              <br />
+              <br />
+              <Input
+                type="text"
+                name="title"
+                placeholder="Title"
+                value={title}
+                onChange={this.onChange}
+                required
+              />
+              <br />
+              <br />
+              <TextArea
+                name="body"
+                placeholder="Body"
+                value={body}
+                onChange={this.onChange}
+              />
+              <br />
+              <br />
+              <Button htmlType="submit">Post it</Button>
+            </div>
+          </form>
+        ) : (
+          <Button
+            style={{ fontWeight: "bold", fontSize: 20 }}
+            onClick={() => this.props.history.push("/login")}
+          >
+            Login to add blogs
+          </Button>
+        )}
       </div>
     );
   }
@@ -77,6 +88,7 @@ class AddBlog extends Component {
 
 AddBlog.propTypes = {
   createBlog: propTypes.func.isRequired,
+  token: propTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -85,7 +97,13 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+const mapStateToProps = (state) => {
+  return {
+    token: state.auth.token,
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps //propType
-)(AddBlog);
+)(withRouter(AddBlog));

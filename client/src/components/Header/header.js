@@ -49,18 +49,6 @@ class Header extends Component {
               Blogs
             </Menu.Item>
 
-            {/* <Menu.Item
-              as={Link}
-              position="right"
-              name="login"
-              to="/login"
-              active={activeItem === "login"}
-              onClick={this.handleItemClick}
-            >
-              <Icon name="user" />
-              Login
-            </Menu.Item> */}
-
             <Menu.Menu as={Link} name="login" to="/login" position="right">
               <Button
                 content={this.props.token ? "Logout" : "Login"}

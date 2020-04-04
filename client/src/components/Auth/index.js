@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { login, logout } from "../../actions/authActions";
 import SignUp from "./signup";
 import { Input, Button } from "antd";
+import { withRouter } from "react-router-dom";
 // import propTypes from "prop-types";
 
 class Auth extends Component {
@@ -34,38 +35,48 @@ class Auth extends Component {
 
     return (
       <div>
-        <div style={{ float: "left", marginLeft: 500 }}>
-          <SignUp />
-        </div>
+        {!this.props.token ? (
+          <Fragment>
+            <div style={{ float: "left", marginLeft: 500 }}>
+              <SignUp />
+            </div>
 
-        <form
-          onSubmit={this._handleLogin}
-          style={{ float: "right", marginRight: 500 }}
-        >
-          <h2>Login</h2>
-          <br />
-          <Input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={username}
-            onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
-          />
-          <br />
-          <br />
-          <Input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={password}
-            onChange={(e) => this.setState({ [e.target.name]: e.target.value })}
-          />
-          <br />
-          <br />
-          <Button htmlType="submit">
-            {this.props.token ? "Logout" : "Login"}
-          </Button>
-        </form>
+            <form
+              onSubmit={this._handleLogin}
+              style={{ float: "right", marginRight: 500 }}
+            >
+              <h2>Login</h2>
+              <br />
+              <Input
+                type="text"
+                name="username"
+                placeholder="username"
+                value={username}
+                onChange={(e) =>
+                  this.setState({ [e.target.name]: e.target.value })
+                }
+              />
+              <br />
+              <br />
+              <Input
+                type="password"
+                name="password"
+                placeholder="password"
+                value={password}
+                onChange={(e) =>
+                  this.setState({ [e.target.name]: e.target.value })
+                }
+              />
+              <br />
+              <br />
+              <Button htmlType="submit">
+                {this.props.token ? "Logout" : "Login"}
+              </Button>
+            </form>
+          </Fragment>
+        ) : (
+          this.props.history.push("/blogs")
+        )}
       </div>
     );
   }
@@ -79,4 +90,4 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
 });
 
-export default connect(mapStateToProps, { login, logout })(Auth);
+export default connect(mapStateToProps, { login, logout })(withRouter(Auth));
