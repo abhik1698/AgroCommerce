@@ -15,7 +15,7 @@ function App(props) {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/blogs" exact component={Blogs} />
-          <Route path="/login" exact component={Auth} />
+          <Route path="/login" exact component={!props.token ? Auth : Home} />
         </Switch>
       </div>
     </BrowserRouter>

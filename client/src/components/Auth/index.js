@@ -36,55 +36,51 @@ class Auth extends Component {
 
     return (
       <div>
-        {!this.props.token ? (
-          <Fragment>
-            <div style={{ float: "left", marginLeft: 500 }}>
-              <SignUp />
-            </div>
+        <Fragment>
+          <div style={{ float: "left", marginLeft: 500 }}>
+            <SignUp />
+          </div>
 
-            <form
-              onSubmit={(e) => this._handleLogin(e)}
-              style={{ float: "right", marginRight: 500 }}
-            >
-              <h2>Login</h2>
-              <br />
-              <Input
-                type="text"
-                name="username"
-                placeholder="username"
-                required
-                value={username}
-                onChange={(e) =>
-                  this.setState({ [e.target.name]: e.target.value })
-                }
-              />
-              <br />
-              <br />
-              <Input
-                type="password"
-                name="password"
-                placeholder="password"
-                required
-                value={password}
-                onChange={(e) =>
-                  this.setState({ [e.target.name]: e.target.value })
-                }
-              />
-              <br />
-              <br />
-              <Button htmlType="submit">
-                {this.props.token ? "Logout" : "Login"}
-              </Button>
-              <p style={{ color: "red" }}>
-                {this.state.flag === 1 &&
-                  !this.props.token &&
-                  "Credentials mismatch"}
-              </p>
-            </form>
-          </Fragment>
-        ) : (
-          this.props.history.push("/")
-        )}
+          <form
+            onSubmit={(e) => this._handleLogin(e)}
+            style={{ float: "right", marginRight: 500 }}
+          >
+            <h2>Login</h2>
+            <br />
+            <Input
+              type="text"
+              name="username"
+              placeholder="username"
+              required
+              value={username}
+              onChange={(e) =>
+                this.setState({ [e.target.name]: e.target.value })
+              }
+            />
+            <br />
+            <br />
+            <Input
+              type="password"
+              name="password"
+              placeholder="password"
+              required
+              value={password}
+              onChange={(e) =>
+                this.setState({ [e.target.name]: e.target.value })
+              }
+            />
+            <br />
+            <br />
+            <Button htmlType="submit">
+              {this.props.token ? "Logout" : "Login"}
+            </Button>
+            <p style={{ color: "red" }}>
+              {this.state.flag === 1 &&
+                !this.props.token &&
+                "Credentials mismatch"}
+            </p>
+          </form>
+        </Fragment>
       </div>
     );
   }
