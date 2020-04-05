@@ -59,9 +59,14 @@ class AddBlog extends Component {
                   value={body}
                   onChange={this.onChange}
                 />
+                {/* <br />
+                <br /> */}
                 <div style={{ textAlign: "center" }}>
-                  <Button htmlType="submit" style={{ color: "red" }}>
-                    Add
+                  <Button
+                    htmlType="submit"
+                    style={{ color: "red", width: "30%" }}
+                  >
+                    Publish
                   </Button>
                 </div>
                 <br />
