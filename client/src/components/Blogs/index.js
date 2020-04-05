@@ -42,7 +42,7 @@ class Blogs extends React.Component {
 
         <h1>Blogs</h1>
         {blogs.map((blog, index) => (
-          <Fragment key={index}>
+          <Container key={index}>
             <Moment fromNow>{blog.created}</Moment>
             <Card
               // onClick={() => {
@@ -50,10 +50,11 @@ class Blogs extends React.Component {
               // }}
               header={blog.title}
               meta={blog.author}
+              style={{ width: "100%" }}
               description={blog.body}
             />
             <Divider />
-          </Fragment>
+          </Container>
         ))}
       </Container>
     );
