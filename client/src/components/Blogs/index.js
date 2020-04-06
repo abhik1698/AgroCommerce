@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Card, Container, Divider } from "semantic-ui-react";
 // import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
