@@ -10,6 +10,14 @@ router.get("/getAllBlogs", (req, res) => {
   });
 });
 
+router.get("/getBlog/:id", (req, res) => {
+  console.log("Getting the Blog");
+  BlogsController.getBlog(req.params.id, (err, status, blog) => {
+    if (err) res.status(status).json(err);
+    else res.status(status).json(blog);
+  });
+});
+
 router.post("/addBlog", verifyToken, (req, res) => {
   console.log("on Add Blog route");
   jwt.verify(req.token, "secretkey", (err, authData) => {

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Auth from "./components/Auth";
-import Blogs from "./components/Blogs";
+import BlogsComponents from "./components/Blogs";
 
 function App(props) {
   return (
@@ -14,7 +14,8 @@ function App(props) {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/blogs" exact component={Blogs} />
+          <Route path="/blogs" exact component={BlogsComponents.Blogs} />
+          <Route path="/blogs/:id" exact component={BlogsComponents.ViewBlog} />
           <Route path="/login" exact component={!props.token ? Auth : Home} />
         </Switch>
       </div>
