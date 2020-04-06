@@ -2,23 +2,25 @@ import { FETCH_BLOGS, NEW_BLOG } from "../actions/types";
 
 const initialState = {
   items: [],
-  item: {}
+  item: {},
 };
 
 export default function blogReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_BLOGS:
-      console.log("Blog Reducer!");
+      console.log("Fetch Blog Reducer!");
       return {
         ...state,
-        items: action.payload
+        items: action.payload,
       };
     case NEW_BLOG:
+      console.log("Add Blog Reducer!");
       return {
         ...state,
-        item: action.payload
+        item: action.payload,
       };
     default:
+      console.log("default Blog Reducer!");
       return { ...state };
   }
 }

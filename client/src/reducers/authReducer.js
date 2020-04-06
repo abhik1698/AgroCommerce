@@ -7,9 +7,9 @@ const initialState = {
 };
 
 export default function authReducer(state = initialState, action) {
-  console.log("Now in Auth Reducer");
   switch (action.type) {
     case NEW_USER:
+      console.log("Now in New_USER Auth Reducer");
       if (!action.payload) {
         return {
           ...state,
@@ -24,13 +24,16 @@ export default function authReducer(state = initialState, action) {
         addedUser: true,
       };
     case LOGIN:
+      console.log("Now in LOGIN Auth Reducer");
       return {
         ...state,
         token: action.payload,
       };
     case LOGOUT:
+      console.log("Now in LOGOUT Auth Reducer");
       return { ...state, token: null };
     default:
+      console.log("default Auth Reducer");
       return { ...state };
   }
 }

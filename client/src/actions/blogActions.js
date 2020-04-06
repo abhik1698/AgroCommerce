@@ -1,7 +1,7 @@
 import { FETCH_BLOGS, NEW_BLOG } from "./types";
 
 export const fetchBlogs = () => (dispatch) => {
-  console.log("Fetching");
+  console.log("fetchBlogs Action");
   fetch("http://localhost:5000/api/blogs/getAllBlogs")
     .then((response) => response.json())
     .then((data) =>
@@ -13,7 +13,7 @@ export const fetchBlogs = () => (dispatch) => {
 };
 
 export const createBlog = (blogData) => (dispatch) => {
-  console.log("Before Blog Action: " + JSON.stringify(blogData));
+  console.log("createBlog Action with blogData: " + JSON.stringify(blogData));
   fetch("http://localhost:5000/api/blogs/addBlog", {
     method: "POST",
     headers: {
