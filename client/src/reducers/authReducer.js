@@ -1,4 +1,4 @@
-import { NEW_USER, LOGIN, LOGOUT } from "../actions/types";
+import { ADD_USER, LOGIN, LOGOUT } from "../actions/types";
 
 const initialState = {
   newUser: {},
@@ -8,8 +8,8 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
-    case NEW_USER:
-      console.log("Now in New_USER Auth Reducer");
+    case ADD_USER:
+      console.log("Now in ADD_USER Auth Reducer");
       if (!action.payload) {
         return {
           ...state,

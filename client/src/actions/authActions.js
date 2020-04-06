@@ -1,4 +1,4 @@
-import { FETCH_USERS, NEW_USER, LOGIN, LOGOUT } from "./types";
+import { FETCH_USERS, ADD_USER, LOGIN, LOGOUT } from "./types";
 
 export const addUser = (user) => (dispatch) => {
   console.log("Now in addUser AuthAction");
@@ -11,7 +11,7 @@ export const addUser = (user) => (dispatch) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      dispatch({ type: NEW_USER, payload: data.user });
+      dispatch({ type: ADD_USER, payload: data.user });
     })
     .catch((err) => console.log("ERROR: " + err));
 };
