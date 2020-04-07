@@ -8,8 +8,9 @@ import { withRouter } from "react-router-dom";
 
 class Auth extends Component {
   state = {
-    username: "",
-    password: "",
+    username: localStorage.getItem("loginUsername"),
+    password: localStorage.getItem("loginPassword"),
+    rememberMe: false,
     flag: 0,
   };
 
@@ -27,6 +28,11 @@ class Auth extends Component {
       };
 
       this.props.login(credentials);
+
+      if (this.state.rememberMe) {
+        localStorage.setItem("loginUsername", username);
+        localStorage.setItem("loginPassword", password);
+      }
       this.setState({ flag: 1 });
     }
   };
@@ -70,6 +76,17 @@ class Auth extends Component {
               }
             />
             <br />
+            <div style={{ flexDirection: "row", justifyContent: "center" }}>
+              <Input
+                type="checkbox"
+                checked={this.state.rememberMe}
+                onChange={() =>
+                  this.setState({ rememberMe: !this.state.rememberMe })
+                }
+                style={{ width: 30, height: 20, marginTop: 10 }}
+              />
+              <label style={{ alignSelf: "center" }}>Remember me</label>
+            </div>
             <br />
             <Button htmlType="submit">
               {this.props.token ? "Logout" : "Login"}
