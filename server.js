@@ -11,12 +11,16 @@ var cors = require("cors");
 app.use(cors());
 
 //Connect to Mongo
+// "mongodb://127.0.0.1:27017/agro"
 mongoose
-  .connect("mongodb://127.0.0.1:27017/agro", {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://agro:agro@agrocommerce-dwda3.mongodb.net/agro?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 

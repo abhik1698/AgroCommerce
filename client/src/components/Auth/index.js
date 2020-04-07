@@ -5,6 +5,7 @@ import SignUp from "./signup";
 import { Input, Button } from "antd";
 import { withRouter } from "react-router-dom";
 // import propTypes from "prop-types";
+import { Container, Image, Row, Col } from "react-bootstrap";
 
 class Auth extends Component {
   state = {
@@ -41,17 +42,10 @@ class Auth extends Component {
     const { username, password } = this.state;
 
     return (
-      <div>
-        <Fragment>
-          <div style={{ float: "left", marginLeft: 500 }}>
-            <SignUp />
-          </div>
-
-          <form
-            onSubmit={(e) => this._handleLogin(e)}
-            style={{ float: "right", marginRight: 500 }}
-          >
-            <h2>Login</h2>
+      <Container fluid style={{ backgroundColor: "#555c57", padding: 20 }}>
+        <Container style={{ width: "50%" }}>
+          <form onSubmit={(e) => this._handleLogin(e)}>
+            <h2 style={{ color: "white " }}>Login</h2>
             <br />
             <Input
               type="text"
@@ -76,29 +70,33 @@ class Auth extends Component {
               }
             />
             <br />
-            <div style={{ flexDirection: "row", justifyContent: "center" }}>
-              <Input
-                type="checkbox"
-                checked={this.state.rememberMe}
-                onChange={() =>
-                  this.setState({ rememberMe: !this.state.rememberMe })
-                }
-                style={{ width: 30, height: 20, marginTop: 10 }}
-              />
-              <label style={{ alignSelf: "center" }}>Remember me</label>
-            </div>
+
             <br />
-            <Button htmlType="submit">
-              {this.props.token ? "Logout" : "Login"}
-            </Button>
-            <p style={{ color: "red" }}>
-              {this.state.flag === 1 &&
-                !this.props.token &&
-                "Credentials mismatch"}
-            </p>
+            <center>
+              <div style={{ flexDirection: "row", justifyContent: "center" }}>
+                <Input
+                  type="checkbox"
+                  checked={this.state.rememberMe}
+                  onChange={() =>
+                    this.setState({ rememberMe: !this.state.rememberMe })
+                  }
+                  style={{ width: 30, height: 20, marginTop: 10 }}
+                />
+                <label>Remember me</label>
+              </div>
+              <p style={{ color: "black", fontWeight: "bold" }}>
+                {this.state.flag === 1 &&
+                  !this.props.token &&
+                  "Credentials mismatch"}
+              </p>
+              <Button htmlType="submit">
+                {this.props.token ? "Logout" : "Login"}
+              </Button>
+            </center>
           </form>
-        </Fragment>
-      </div>
+        </Container>
+        <SignUp />
+      </Container>
     );
   }
 }

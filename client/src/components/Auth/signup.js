@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addUser } from "../../actions/authActions";
 import { Input, Button } from "antd";
+import { Container } from "react-bootstrap";
 // import propTypes from "prop-types";
 
 class SignUp extends Component {
@@ -39,9 +40,9 @@ class SignUp extends Component {
     const { nFullname, nUsername, nPassword, confirmNPassword } = this.state;
 
     return (
-      <div>
+      <Container style={{ width: "50%" }}>
         <form onSubmit={(e) => this._handleSignup(e)}>
-          <h2>Signup</h2>
+          <h2 style={{ color: "white " }}>Signup</h2>
           <Input
             type="text"
             name="nFullname"
@@ -82,15 +83,23 @@ class SignUp extends Component {
           />
           <br />
           <br />
-          <Button htmlType="submit">Signup</Button>
-          <p style={{ color: this.props.addedUser ? "green" : "red" }}>
-            {this.state.flag === 1 &&
-              (this.props.addedUser
-                ? "Account created successully"
-                : "Username Taken")}
-          </p>
+
+          <center>
+            <p
+              style={{
+                fontWeight: "bold",
+                color: this.props.addedUser ? "yellow" : "black",
+              }}
+            >
+              {this.state.flag === 1 &&
+                (this.props.addedUser
+                  ? "Account created successully"
+                  : "Username Taken")}
+            </p>
+            <Button htmlType="submit">Signup</Button>
+          </center>
         </form>
-      </div>
+      </Container>
     );
   }
 }

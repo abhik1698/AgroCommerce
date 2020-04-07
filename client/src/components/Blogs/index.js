@@ -41,7 +41,7 @@ class Blogs extends React.Component {
         {this.renderRedirect()}
         <AddBlog />
 
-        <h1>Blogs</h1>
+        <h1 style={{ color: "white " }}>Blogs</h1>
         {blogs.map((blog, index) => (
           <Container key={index}>
             <Moment fromNow>{blog.created}</Moment>
