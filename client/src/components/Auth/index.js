@@ -14,6 +14,11 @@ class Auth extends Component {
     ack: "",
   };
 
+  constructor(props) {
+    super(props);
+    this.otpRef = React.createRef();
+  }
+
   _handleLogin = (e) => {
     e.preventDefault();
     console.log("redux token: " + this.props.token);
@@ -30,6 +35,7 @@ class Auth extends Component {
         };
         if (otp.length !== 4) {
           this.setState({ ack: "Enter valid OTP" });
+          this.otpRef.current.focus();
         } else this.props.login(credentials);
       } else {
         this.setState({ ack: "Enter a valid phone number" });
@@ -70,18 +76,20 @@ class Auth extends Component {
               />
               <p style={{ color: "red" }}>{ack}</p>
               <center style={{ width: "10%" }}>
-                <OtpInput
-                  onChange={(otp) => this.setState({ otp: otp })}
-                  value={otp}
-                  numInputs={4}
-                  inputStyle={{
-                    color: "black",
-                    fontWeight: "bold",
-                    fontSize: 30,
-                    textAlign: "center",
-                  }}
-                  separator={<span>-</span>}
-                />
+                <div ref={this.otpRef}>
+                  <OtpInput
+                    onChange={(otp) => this.setState({ otp: otp })}
+                    value={otp}
+                    numInputs={4}
+                    inputStyle={{
+                      color: "black",
+                      fontWeight: "bold",
+                      fontSize: 30,
+                      textAlign: "center",
+                    }}
+                    separator={<span>-</span>}
+                  />
+                </div>
               </center>
               <br />
               <Button htmlType="submit">
