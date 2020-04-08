@@ -42,6 +42,7 @@ class Auth extends Component {
     const { username, password } = this.state;
 
     return (
+      // Login through username
       <Container fluid style={{ backgroundColor: "#555c57", padding: 20 }}>
         <Container style={{ width: "50%" }}>
           <form onSubmit={(e) => this._handleLogin(e)}>
