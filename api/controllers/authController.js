@@ -24,25 +24,42 @@ const addUser = (data, callback) => {
 };
 
 const login = (credentials, callback) => {
-  Auth.findOne({ username: credentials.username }, (err, user) => {
-    if (err) {
-      console.log(err);
-      return callback(err, 500, null);
-    } else {
-      if (
-        !!user &&
-        credentials.username === user.username &&
-        user.compareHash(credentials.password)
-      ) {
-        return callback(err, 200, user);
+  Auth.findOne({ phone: credentials.phone })
+    .then((user) => {
+      if (!user) {
+        console.log("Hey new user");
+        var auth = new Auth(credentials);
+        auth.save((error, newUser) => {
+          if (error) {
+            console.log("error in saving user" + error);
+            return callback(error, 500, null);
+          }
+          return callback(null, 200, newUser);
+        });
       }
-      return callback(err, 403, null);
-    }
-  });
+      if (user) {
+        console.log("Hey existing user!");
+        console.log(credentials);
+        if (credentials.name) {
+          user.name = credentials.name;
+          user.save((e, u) => {
+            if (e) {
+              console.log("Error in updating name: " + e);
+              return callback(e, 500, null);
+            } else {
+              console.log("updated name");
+              return callback(null, 200, u);
+            }
+          });
+        }
+        return callback(null, 200, user);
+      }
+    })
+    .catch((err) => console.log("Promise err: " + err));
 };
 
-const getUser = (username, callback) => {
-  Auth.findOne({ username: username }, (err, user) => {
+const getUser = (phone, callback) => {
+  Auth.findOne({ phone: phone }, (err, user) => {
     if (err) {
       console.log(err);
       return callback(err, 500, user);

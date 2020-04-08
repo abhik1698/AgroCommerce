@@ -4,6 +4,7 @@ import { createBlog } from "../../actions/blogActions";
 // import propTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { Input, Button } from "antd";
+import { Container } from "react-bootstrap";
 
 const { TextArea } = Input;
 class AddBlog extends Component {
@@ -39,7 +40,7 @@ class AddBlog extends Component {
     return (
       <div>
         {this.props.token && (
-          <Fragment>
+          <Container>
             <form onSubmit={(e) => this.onSubmit(e)}>
               <div>
                 <br />
@@ -49,9 +50,16 @@ class AddBlog extends Component {
                   placeholder="Title"
                   value={title}
                   onChange={this.onChange}
-                  style={{ textAlign: "center" }}
+                  style={{
+                    textAlign: "center",
+                    color: "black",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                  }}
                   required
                 />
+                <br />
+                <br />
                 <TextArea
                   name="body"
                   placeholder="Body"
@@ -73,7 +81,7 @@ class AddBlog extends Component {
                 <br />
               </div>
             </form>
-          </Fragment>
+          </Container>
         )}
       </div>
     );

@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const AuthController = require("../controllers/authController");
 
-router.get("/getUser/:username", (req, res) => {
+router.get("/getUser/:phone", (req, res) => {
   console.log("Getting specified User");
-  AuthController.getUser(req.params.username, (err, status, user) => {
+  AuthController.getUser(req.params.phone, (err, status, user) => {
     res.status(status).send({ err, user });
   });
 });
@@ -15,10 +15,11 @@ router.post("/login", (req, res) => {
   console.log("Login by cred route");
   AuthController.login(req.body, (err, status, user) => {
     // res.status(status).send({ err, user });
+    console.log("loginController error: " + err);
     if (user) {
       jwt.sign({ user }, "secretkey", (error, token) => {
         res.status(status).json({
-          err,
+          error,
           token,
           user,
         });
@@ -50,12 +51,5 @@ function verifyToken(req, res, next) {
     res.sendStatus(403);
   }
 }
-
-router.post("/addUser", (req, res) => {
-  console.log("on Add User route");
-  AuthController.addUser(req.body, (err, status, user) => {
-    res.status(status).send({ err, user });
-  });
-});
 
 module.exports = router;

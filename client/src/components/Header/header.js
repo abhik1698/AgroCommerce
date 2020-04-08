@@ -18,13 +18,13 @@ class Header extends Component {
     return (
       <center>
         <Segment inverted>
-          <h1 style={{ color: "white", display: "inline" }}>Agro&nbsp;</h1>
+          <h1 style={{ display: "inline", color: "white" }}>Agro&nbsp;</h1>
           <Image
             style={{ display: "inline" }}
             src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png"
             size="small"
           />
-          <h1 style={{ color: "white", display: "inline" }}>&nbsp;Commerce</h1>
+          <h1 style={{ display: "inline", color: "white" }}>&nbsp;Commerce</h1>
           <Menu inverted pointing secondary>
             <Menu.Item
               position="left"
@@ -54,8 +54,11 @@ class Header extends Component {
                 style={{ color: "black" }}
                 content={
                   this.props.token
-                    ? JSON.parse(localStorage.getItem("user")).fullname +
-                      " - logout"
+                    ? localStorage.getItem("user") &&
+                      JSON.parse(localStorage.getItem("user")).name
+                      ? JSON.parse(localStorage.getItem("user")).name +
+                        " - logout"
+                      : "logout"
                     : "login"
                 }
                 onClick={this.props.token && this.props.logout}

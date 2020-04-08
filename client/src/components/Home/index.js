@@ -2,14 +2,56 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Input } from "antd";
+import { login } from "../../actions/authActions";
 class Home extends Component {
+  state = {
+    name: JSON.parse(localStorage.getItem("user"))
+      ? JSON.parse(localStorage.getItem("user")).name
+      : "",
+  };
   render() {
+    const { name } = this.state;
     return (
       <Fragment>
         {this.props.token ? (
           // After login
           <Fragment>
-            <h1>Welcome buddy</h1>
+            <h1 style={{ display: "inline", margin: 10 }}>
+              {JSON.parse(localStorage.getItem("user")).name ? (
+                "Hi " + name + "!"
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const user = JSON.parse(localStorage.getItem("user"));
+                    const credentials = {
+                      name: name,
+                      phone: user.phone,
+                      otp: user.otp,
+                    };
+                    this.props.login(credentials);
+                  }}
+                  style={{ display: "inline", width: "30%" }}
+                >
+                  <h2 style={{ display: "inline", margin: 10 }}>Full name?</h2>
+                  <Input
+                    style={{ display: "inline", width: "30%" }}
+                    value={name}
+                    type="text"
+                    autoFocus
+                    onChange={(e) => this.setState({ name: e.target.value })}
+                  />
+
+                  <Button
+                    style={{ display: "inline", margin: 10 }}
+                    type="submit"
+                  >
+                    Submit
+                  </Button>
+                </form>
+              )}
+            </h1>
           </Fragment>
         ) : (
           // Not logged in
@@ -33,6 +75,7 @@ class Home extends Component {
                       textAlign: "justify",
                       margin: 10,
                       alignSelf: "center",
+                      color: "white",
                     }}
                   >
                     Trade and Commerce is a channel by which goods and services
@@ -63,6 +106,7 @@ class Home extends Component {
                       textAlign: "justify",
                       margin: 10,
                       alignSelf: "center",
+                      color: "white",
                     }}
                   >
                     The inputs that go into production of agro-commodities and
@@ -94,6 +138,7 @@ class Home extends Component {
                       textAlign: "justify",
                       margin: 10,
                       alignSelf: "center",
+                      color: "white",
                     }}
                   >
                     The world of trade and commerce is incomplete without
@@ -122,7 +167,6 @@ class Home extends Component {
                   style={{
                     backgroundColor: "black",
                     fontWeight: "bold",
-                    color: "white",
                   }}
                 >
                   Get Started
@@ -152,4 +196,4 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { login })(Home);
