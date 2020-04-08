@@ -11,6 +11,7 @@ class Auth extends Component {
   state = {
     phone: "",
     otp: "",
+    ack: "",
   };
 
   _handleLogin = (e) => {
@@ -21,17 +22,21 @@ class Auth extends Component {
     } else {
       const { phone, otp } = this.state;
 
-      const credentials = {
-        phone: phone,
-        otp: otp,
-      };
+      if (phone.length === 10) {
+        const credentials = {
+          phone: phone,
+          otp: otp,
+        };
 
-      this.props.login(credentials);
+        this.props.login(credentials);
+      } else {
+        this.setState({ ack: "Enter a valid phone number" });
+      }
     }
   };
 
   render() {
-    const { phone, otp } = this.state;
+    const { phone, otp, ack } = this.state;
 
     return (
       // Login through username
@@ -50,6 +55,8 @@ class Auth extends Component {
                 type="number"
                 onChange={(e) => this.setState({ phone: e.target.value })}
                 value={phone}
+                minLength={10}
+                maxLength={10}
                 placeholder="Phone number"
                 style={{
                   color: "black",
@@ -59,9 +66,7 @@ class Auth extends Component {
                 }}
                 autoFocus
               />
-
-              <br />
-              <br />
+              <p style={{ color: "red" }}>{ack}</p>
               <center style={{ width: "10%" }}>
                 <OtpInput
                   onChange={(otp) => this.setState({ otp: otp })}
@@ -77,9 +82,6 @@ class Auth extends Component {
                 />
               </center>
               <br />
-
-              <br />
-
               <Button htmlType="submit">
                 {this.props.token ? "Logout" : "Login"}
               </Button>
