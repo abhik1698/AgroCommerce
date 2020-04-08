@@ -23,12 +23,14 @@ class Auth extends Component {
       const { phone, otp } = this.state;
 
       if (phone.length === 10) {
+        this.setState({ ack: "" });
         const credentials = {
           phone: phone,
           otp: otp,
         };
-
-        this.props.login(credentials);
+        if (otp.length !== 4) {
+          this.setState({ ack: "Enter valid OTP" });
+        } else this.props.login(credentials);
       } else {
         this.setState({ ack: "Enter a valid phone number" });
       }
