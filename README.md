@@ -1,11 +1,10 @@
 # AgroCommerce
-MERN stack site
+## MERN stack site
 
-#To Install Packages to root & client directories at once... 
-#From root, USE,
-# > yarn add-packages
+# Installing Packages to root & client directories at once... 
+> yarn add-packages
 
-From root, 
-# > yarn run dev 
+# Run Application
+> yarn run dev 
 
-#runs server (PORT=5000) & client (PORT=3000) concurrently...
+#### Runs server in PORT=5000 & client in PORT=3000 concurrently...
