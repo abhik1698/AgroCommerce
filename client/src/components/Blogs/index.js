@@ -7,6 +7,7 @@ import propTypes from "prop-types";
 import AddBlog from "./addBlog";
 import Moment from "react-moment";
 import axios from "axios";
+import { SERVER_URL } from "../../globals";
 
 class Blogs extends React.Component {
   state = {
@@ -69,9 +70,7 @@ function ViewBlog(props) {
     var mounted = true;
 
     const loadBlog = async () => {
-      const serverURL = process.env.serverURL || "http://localhost:5000";
-
-      const response = await axios.get(`${serverURL}/api/blogs/getBlog/` + id);
+      const response = await axios.get(`${SERVER_URL}/api/blogs/getBlog/` + id);
       if (mounted) {
         setBlog(response.data);
       }

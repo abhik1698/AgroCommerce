@@ -1,12 +1,10 @@
 import { FETCH_BLOGS, NEW_BLOG } from "./types";
-import { Server } from "mongodb";
-
-const serverURL = process.env.serverURL || "http://localhost:5000";
+import { SERVER_URL } from "../globals";
 
 export const fetchBlogs = () => (dispatch) => {
-  console.log("ServerURL: " + serverURL);
+  console.log("SERVER_URL: " + SERVER_URL);
   console.log("fetchBlogs Action");
-  fetch(`${serverURL}/api/blogs/getAllBlogs`)
+  fetch(`${SERVER_URL}/api/blogs/getAllBlogs`)
     .then((response) => response.json())
     .then((data) =>
       dispatch({
@@ -18,7 +16,7 @@ export const fetchBlogs = () => (dispatch) => {
 
 export const createBlog = (blogData) => (dispatch) => {
   console.log("createBlog Action with blogData: " + JSON.stringify(blogData));
-  fetch(`${serverURL}/api/blogs/addBlog`, {
+  fetch(`${SERVER_URL}/api/blogs/addBlog`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
