@@ -14,7 +14,7 @@ app.use(cors());
 //
 mongoose
   .connect(
-    "mongodb+srv://agro:agro@agrocommerce-dwda3.mongodb.net/agro?retryWrites=true&w=majority",
+    "mongodb+srv://agro:agro@cluster0-igxn0.mongodb.net/test?retryWrites=true&w=majority",
     // "mongodb://127.0.0.1:27017/agro",
     {
       useNewUrlParser: true,
