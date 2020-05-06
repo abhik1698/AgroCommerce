@@ -4,6 +4,7 @@ import { Server } from "mongodb";
 const serverURL = process.env.serverURL || "http://localhost:5000";
 
 export const fetchBlogs = () => (dispatch) => {
+  console.log("ServerURL: " + serverURL);
   console.log("fetchBlogs Action");
   fetch(`${serverURL}/api/blogs/getAllBlogs`)
     .then((response) => response.json())
