@@ -59,7 +59,7 @@ class Home extends Component {
             <h1 style={{ textAlign: "center", color: "yellow" }}>
               Agriculture as Commerce
             </h1>
-            <Container style={styles.infoContainer}>
+            {/* <Container style={styles.infoContainer}>
               <Row style={{ flex: 1, justifyContent: "center" }}>
                 <Col xs={10} md={4}>
                   <Image
@@ -172,7 +172,7 @@ class Home extends Component {
                   Get Started
                 </Button>
               </Container>
-            </center>
+            </center> */}
           </Container>
         )}
       </Fragment>

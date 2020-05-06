@@ -8,7 +8,11 @@
     "server": "nodemon server.js",
     "client": "yarn --cwd client start",
     "add-packages": "yarn install && cd client && yarn install",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "heroku-postbuild": "cd client && yarn install --only=dev && yarn install && yarn run build"
+  },
+  "engines": {
+    "node": "13.11.0"
   },
   "nodemonConfig": {
     "watch": [

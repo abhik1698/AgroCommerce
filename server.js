@@ -25,7 +25,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => res.send("This is for API calls"));
+// app.get("/", (req, res) => res.send("This is for API calls"));
 
 //Auth
 const authRoute = require("./api/routes/authRoutes");
@@ -34,6 +34,15 @@ app.use("/api/auth", authRoute);
 //Blogs
 const blogsRoute = require("./api/routes/blogsRoute");
 app.use("/api/blogs", blogsRoute);
+
+// To run client build files
+var path = require("path");
+
+app.use(express.static("client/build"));
+
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "client/build/index.html"))
+);
 
 const port = process.env.PORT || 5000;
 
