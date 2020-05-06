@@ -69,9 +69,9 @@ function ViewBlog(props) {
     var mounted = true;
 
     const loadBlog = async () => {
-      const response = await axios.get(
-        "http://localhost:5000/api/blogs/getBlog/" + id
-      );
+      const serverURL = process.env.serverURL || "http://localhost:5000";
+
+      const response = await axios.get(`${serverURL}/api/blogs/getBlog/` + id);
       if (mounted) {
         setBlog(response.data);
       }

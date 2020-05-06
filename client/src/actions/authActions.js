@@ -1,9 +1,11 @@
 import { FETCH_USERS, LOGIN, LOGOUT } from "./types";
 
+const serverURL = process.env.serverURL || "http://localhost:5000";
+
 export const login = (credentials) => (dispatch) => {
   console.log("Now in login AuthAction");
 
-  fetch("http://localhost:5000/api/auth/login", {
+  fetch(`${serverURL}/api/auth/login`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(credentials),
@@ -34,7 +36,7 @@ export const logout = () => (dispatch) => {
 export const fetchUsers = () => (dispatch) => {
   console.log("Now in fetchUser AuthAction");
 
-  fetch("http://localhost:5000/api/auth/getUsers")
+  fetch(`${serverURL}/api/auth/getUsers`)
     .then((res) => res.json())
     .then((data) => {
       dispatch({ type: FETCH_USERS, payload: data.users });

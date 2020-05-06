@@ -1,8 +1,11 @@
 import { FETCH_BLOGS, NEW_BLOG } from "./types";
+import { Server } from "mongodb";
+
+const serverURL = process.env.serverURL || "http://localhost:5000";
 
 export const fetchBlogs = () => (dispatch) => {
   console.log("fetchBlogs Action");
-  fetch("http://localhost:5000/api/blogs/getAllBlogs")
+  fetch(`${serverURL}/api/blogs/getAllBlogs`)
     .then((response) => response.json())
     .then((data) =>
       dispatch({
@@ -14,7 +17,7 @@ export const fetchBlogs = () => (dispatch) => {
 
 export const createBlog = (blogData) => (dispatch) => {
   console.log("createBlog Action with blogData: " + JSON.stringify(blogData));
-  fetch("http://localhost:5000/api/blogs/addBlog", {
+  fetch(`${serverURL}/api/blogs/addBlog`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
